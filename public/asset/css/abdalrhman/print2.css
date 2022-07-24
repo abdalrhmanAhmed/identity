@@ -1,0 +1,9 @@
+@media print{
+
+    /* ################ button ################ */
+    #print , #close{
+        display: none ;
+        
+    }
+    
+}

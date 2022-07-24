@@ -35,7 +35,7 @@ Route::middleware([
         Route::post('setting/changePassword/{id}', 'changePassword')->name('settings.changePassword');
     }); 
 
-    Route::get('/{page}', 'AdminController@index');
+    Route::get('/{page}', [App\Http\Controllers\AdminController::class,'index']);
 });
 
 Route::get('/', function () {

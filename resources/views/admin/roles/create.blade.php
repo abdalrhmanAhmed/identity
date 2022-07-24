@@ -5,7 +5,7 @@
 <!--Internal  treeview -->
 <link href="{{URL::asset('assets/plugins/treeview/treeview-rtl.css')}}" rel="stylesheet" type="text/css" />
 @section('title')
-اضافة الصلاحيات   
+اضافة الصلاحيات - مورا سوفت للادارة القانونية
 @stop
 
 @endsection
@@ -41,7 +41,7 @@
 
 
 
-{!! Form::open(array('route' => 'admin.roles.store','method'=>'POST')) !!}
+{!! Form::open(array('route' => 'roles.store','method'=>'POST')) !!}
 <!-- row -->
 <div class="row">
     <div class="col-md-12">

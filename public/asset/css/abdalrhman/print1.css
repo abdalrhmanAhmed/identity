@@ -1,0 +1,51 @@
+@media print{
+    /* ################ top-header ############# */
+    .top-header h6,
+    .top-header p{
+        font-weight: bold;
+        font-size: 25px;
+    }
+    /* ############ header ################### */
+   *{direction: rtl;}
+    .invoice-header{
+        height: 125px !important;
+    }
+    .card .card-body .billed-from,
+    .card .card-body .eaeu{
+        position: absolute;
+        top: 0;
+    }
+    .card .card-body .eaeu{
+        position: relative;
+        top: 0;
+        right: 480px;
+    }
+    .card .card-body  .test1{
+        left: 0;
+    }
+    .card .card-body  .test2{
+        right: 0;
+    }
+
+    /* ############### photo ###################### */
+
+    .card .card-body .img{
+        color: red;
+    }
+
+    /* ############# form ################### */
+    .top-form div{
+        width: 49%;
+    }
+    .top-form div label{
+        font-weight: bold;
+        font-size: 22px;
+    }
+    .top-form div p{
+        font-size: 20px;
+    }
+    /* ################ button ################ */
+    .card .card-body button{
+        display: none ;
+    }
+}

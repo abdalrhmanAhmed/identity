@@ -15129,7 +15129,7 @@ a.close.disabled {
 /* ############### PAGE LAYOUT STYLES ############### */
 /* ###### 6.3 Global  ###### */
 body {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Cairo', sans-serif !important; 
 }
 
 .main-body, .main-dashboard {
