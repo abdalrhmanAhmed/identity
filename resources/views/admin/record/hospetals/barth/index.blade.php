@@ -63,6 +63,7 @@
 										<thead>
 											<tr>
 												<th class="wd-5p border-bottom-0  text-center">#</th>
+												<th class="wd-10p border-bottom-0 text-center">رقم الشهادة</th>
 												<th class="wd-10p border-bottom-0 text-center">إسم المركز</th>
 												<th class="wd-25p border-bottom-0 text-center">مقدم الطلب</th>
 												<th class="wd-25p border-bottom-0 text-center">المرفق</th>
@@ -73,9 +74,10 @@
 											@foreach ($hospetal as $center)
 												<tr>
 													<td class="text-center">{{ $loop->index+1 }}</td>
-													<td class="text-center">{{ $center->center_name}}</td>
-													<td class="text-center">{{ $center->local[0]->local_name }}</td>
-													<td class="text-center">{{ $center->local[0]->local_name }}</td>
+													<td class="text-center">{{ $loop->index+1 }}</td>
+													<td class="text-center">{{ $center->local_id}}</td>
+													<td class="text-center">{{ $center->descrption }}</td>
+													<td class="text-center">{{ $center->files_route }}</td>
 													<td class="text-center">
 														<div class="dropdown">
 															<button aria-expanded="false" aria-haspopup="true"
@@ -98,21 +100,25 @@
 													<div class="modal-dialog modal-dialog-centered" role="document">
 														<div class="modal-content modal-content-demo">
 															<div class="modal-header">
-																<h6 class="modal-title">تعديل إسم  المراكز</h6><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+																<h6 class="modal-title"> شهادة الميلاد</h6><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
 															</div>
 															<form action="{{ route('center.edit', $center->id) }}" method="PUT">
 																{{ csrf_field() }}
 																@method('PUT')
 																<div class="modal-body">
-																	<label for="">إسم المركز </label>
-																	<input type="text" name="center_name" value="{{ $center->center_name }}" class="form-control">
-																	<label class="form-label">اسم المحلية</label>
-																	<select name="local_id" id="select-beast" class="form-control" data-parsley-class-handler="#lnWrapper" required="">
-																		<option selected value="{{$center->local[0]->id}}">{{$center->local[0]->local_name}}</option>
-																		@foreach ($locales as $item)
-																			<option value="{{$item->id}}">{{$item->local_name}}</option>
-																		@endforeach
-																	</select>
+																	<label for="">وصف الحالة</label>
+																	<input type="text" name="descrption" class="form-control" required>
+																	<br>
+																	<label for="">الرقم الوطني لمقدم الطلب</label>
+																	<input type="text" name="id_no" class="form-control" required>
+																	<br>
+																	<label for="">إسم مقدم الطلب</label>
+																	<input type="text" name="client_name" class="form-control" disabled>
+																	<br>
+																	<div class="col-sm-12 col-md-4 mg-t-10 mg-sm-t-0">
+																		<label for="">ملف الحالة</label>
+																		<input class="dropify" type="file" name="files" accept=".pdf,.png,.jpg,.jpeg"/>
+																	</div>
 																</div>
 																<div class="modal-footer">
 																	<button class="btn ripple btn-primary btn-sm" type="submit">حفظ</button>
@@ -127,10 +133,10 @@
 													<div class="modal-dialog modal-dialog-centered" role="document">
 														<div class="modal-content modal-content-demo">
 															<div class="modal-header">
-																<h6 class="modal-title">حذف المركز</h6><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+																<h6 class="modal-title">حذف شهادة الميلاد</h6><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
 															</div>
 																<div class="modal-body">
-																	<label for="">هل أنت متأكد من عملية حذف المركز ؟</label>
+																	<label for="">هل أنت متأكد من عملية حذف الشهادة ؟</label>
 																	<input disabled type="text" name="center_name" value="{{ $center->center_name }}" class="form-control">
 																</div>
 																<div class="modal-footer">
@@ -157,16 +163,23 @@
 									<div class="modal-header">
 										<h6 class="modal-title">إضافة  شهادة ولادة</h6><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
 									</div>
-									<form action="{{ route('center.store') }}" method="POST">
+									<form action="{{ route('barthcreate') }}" method="POST">
 										{{ csrf_field() }}
 										<div class="modal-body">
 											<label for="">وصف الحالة</label>
 											<input type="text" name="descrption" class="form-control" required>
                                             <br>
-                                            <div>
-                                                <label for="">ملف الحلة</label>
-                                                <input id="demo" type="file" name="files" accept=".jpg, .png, image/jpeg, image/png, html, zip, css,js" multiple>
-                                            </div>
+											<label for="">الرقم الوطني لمقدم الطلب</label>
+											<input type="text" name="id_no" class="form-control" required>
+                                            <br>
+											<label for="">إسم مقدم الطلب</label>
+											<input type="text" name="client_name" class="form-control" disabled>
+                                            <br>
+											<div class="col-sm-12 col-md-4 mg-t-10 mg-sm-t-0">
+												<label for="">ملف الحالة</label>
+												<input class="dropify" type="file" name="files" accept=".pdf,.png,.jpg,.jpeg"/>
+											</div>
+										</div>
 										<div class="modal-footer">
 											<button class="btn ripple btn-primary btn-sm" type="submit">إضافة</button>
 											<button class="btn ripple btn-secondary btn-sm" data-dismiss="modal" type="button">إلغاء</button>

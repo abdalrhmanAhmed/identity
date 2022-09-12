@@ -96,6 +96,7 @@ Route::get('/', function () {
                 Route::get('getCenter/{id}',[ProfileController::class,'getCenter'])->name('getCenter');
                 Route::get('profile/data/{id}',[ClientsController::class,'index'])->name('profileData');
                 Route::get('barthdoc',[HospetalController::class,'indexb'])->name('barthdoc');
+                Route::post('barthcreate',[HospetalController::class,'storeb'])->name('barthcreate');
                 Route::get('dathedoc',[HospetalController::class,'indexd'])->name('dathedoc');
 
                 Route::get('/qrcode',[App\Http\Controllers\qrcode\QrcodeController::class , 'index'])->name('qrcode');

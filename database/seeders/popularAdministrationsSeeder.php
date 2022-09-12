@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\record\Popularadministrations;
 use Illuminate\Database\Seeder;
 
 class popularAdministrationsSeeder extends Seeder
@@ -20,5 +21,9 @@ class popularAdministrationsSeeder extends Seeder
             'الشمالي',
             'الشرقي',
         ];
+        foreach ($populars as $permission) {
+            Popularadministrations::create(['popular_name' => $permission]);
+            }
+
     }
 }

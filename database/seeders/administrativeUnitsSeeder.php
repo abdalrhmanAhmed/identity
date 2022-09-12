@@ -21,7 +21,7 @@ class administrativeUnitsSeeder extends Seeder
             'جنوب بربر',
         ];
         foreach($adminstrative as  $adm){
-            AdministrativeUnits::create(['Name' => $adm]);
+            AdministrativeUnits::create(['adminis_name' => $adm]);
         }
     }
 }

@@ -15,6 +15,7 @@ class UserDataSeeder extends Seeder
     public function run()
     {
         $userData = UserData::create([
+            'id' => 1,
             'state' => 1,
             'locale' => 1,
             'password' => 1,
