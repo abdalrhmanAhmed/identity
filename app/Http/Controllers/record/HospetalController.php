@@ -164,7 +164,7 @@ class HospetalController extends Controller
      */
     public function destroy(Request $hospetal)
     {
-        try
+            try
         {
             $town = Hospetal::destroy($hospetal->id);
             session()->flash('delete');
