@@ -43,12 +43,13 @@ class PermissionController extends Controller
             $permissions->name = $request->name;
             $permissions->guard_name = 'web';
             $permissions->save();
-            toastr()->success('Success Message');
+            session()->flash('success');
             return redirect()->back();
         }
         catch(\Exception $e)
         {
-            return redirect()->back()->withErrors($e->getMessage());
+            session()->flash('faild');
+            return redirect()->back();
         }
     }
 
@@ -85,7 +86,7 @@ class PermissionController extends Controller
     {
         $permission->name = $request->name;
         $permission->update();
-        toastr()->success('updated Successfully');
+        session()->flash('success');
         return redirect()->back();
     }
 
@@ -98,16 +99,7 @@ class PermissionController extends Controller
     public function destroy(Permission $permission)
     {
         $permission->delete();
-        toastr()->error('delete Successfully');
-        return redirect()->back();
-    }
-
-    public function deleteAll(Request $request)
-    {
-        $deleteAll = explode(',', $request->ids);
-        Permission::whereIn('id', $deleteAll)->delete();
-
-        toastr()->error('delete Successfully');
+        session()->flash('success');
         return redirect()->back();
     }
 }

@@ -14,6 +14,8 @@
 				<!-- breadcrumb -->
 @endsection
 @section('content')
+@include('notifications.notify')
+
 				<!-- row -->
 				<div class="row">
 					<div class="col-xl-12">
@@ -25,14 +27,11 @@
 											@can('role-create')
 												<a class="btn btn-primary btn-sm effect-scale" href="#modaldemo8" data-toggle="modal" data-effect="effect-scale">اضافة</a>
 											@endcan
-											<button type="button" class="btn btn-primary btn-sm" id="btn-delete_all">
-												حذف الصفوف المختارة
-											</button>
 										</div>
 									</div>
 									<br>
 								</div>
-				
+
 							</div>
 							<div class="card-body">
 								<div class="table-responsive">
@@ -65,8 +64,8 @@
 																{!! Form::close() !!}
 															@endcan
 														@endif
-				
-				
+
+
 													</td>
 												</tr>
 												<!-- edit modal -->

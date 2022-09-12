@@ -27,12 +27,17 @@ class permissionTabelSeeder extends Seeder
             'permission-list',
             'permission-create',
             'permission-edit',
-            'permission-delete'
+            'permission-delete',
+            'data_entry',
+            'tecket_maker',
+            'parsones_recorde',
+            'reports',
+            'settinges'
             ];
             foreach ($permissions as $permission) {
             Permission::create(['name' => $permission]);
             }
-            
-            
+
+
     }
 }

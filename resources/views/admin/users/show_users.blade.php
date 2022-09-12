@@ -30,12 +30,8 @@
 @endsection
 
 @section('content')
+@include('notifications.notify')
 
-@if (session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
-    </div>
-@endif
 
 <!-- row opened -->
 <div class="row row-sm">
@@ -118,12 +114,12 @@
                     <h6 class="modal-title">حذف المستخدم</h6><button aria-label="Close" class="close"
                         data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
                 </div>
-                <form action="{{ route('admin.users.destroy', 'test') }}" method="post">
+                <form action="{{ route('admin.users.destroy','test') }}" method="post">
                     {{ method_field('delete') }}
                     {{ csrf_field() }}
                     <div class="modal-body">
                         <p>هل انت متاكد من عملية الحذف ؟</p><br>
-                        <input type="hidden" name="user_id" id="user_id" value="">
+                        <input type="hidden" name="user_id" id="user_id" value="user_id">
                         <input class="form-control" name="username" id="username" type="text" readonly>
                     </div>
                     <div class="modal-footer">

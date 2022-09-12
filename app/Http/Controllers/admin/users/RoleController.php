@@ -37,9 +37,8 @@ $this->validate($request, [
 
 $role = Role::create(['name' => $request->input('name')]);
 $role->syncPermissions($request->input('permission'));
-
-return redirect()->route('admin.roles.index')
-->with('success','Role created successfully');
+session()->flash('success');
+return redirect()->route('admin.roles.index');
 }
 public function show($id)
 {
@@ -58,7 +57,7 @@ $rolePermissions = DB::table("role_has_permissions")->where("role_has_permission
 ->pluck('role_has_permissions.permission_id','role_has_permissions.permission_id')
 ->all();
 
-return view('roles.edit',compact('role','permission','rolePermissions'));
+return view('admin.roles.edit',compact('role','permission','rolePermissions'));
 }
 public function update(Request $request, $id)
 {
@@ -72,14 +71,13 @@ $role->name = $request->input('name');
 $role->save();
 
 $role->syncPermissions($request->input('permission'));
-
-return redirect()->route('roles.index')
-->with('success','Role updated successfully');
+session()->flash('success');
+return redirect()->route('admin.roles.index');
 }
 public function destroy($id)
 {
 DB::table("roles")->where('id',$id)->delete();
-return redirect()->route('roles.index')
-->with('success','Role deleted successfully');
+session()->flash('success');
+return redirect()->route('admin.roles.index');
 }
 }

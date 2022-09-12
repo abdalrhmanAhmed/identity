@@ -59,30 +59,42 @@
                         <div class="parsley-input col-md-6 mg-t-20 mg-md-t-0" id="lnWrapper">
                             <label>البريد الالكتروني: <span class="tx-danger">*</span></label>
                             {!! Form::text('email', null, array('class' => 'form-control','required')) !!}
+                            <input type="hidden" name="id_no" value="{{ $user->userData->profile_id }}">
                         </div>
                     </div>
 
-                </div>
-
-                <div class="row mg-b-20">
-                    <div class="parsley-input col-md-6 mg-t-20 mg-md-t-0" id="lnWrapper">
-                        <label>كلمة المرور: <span class="tx-danger">*</span></label>
-                        {!! Form::password('password', array('class' => 'form-control','required')) !!}
-                    </div>
-
-                    <div class="parsley-input col-md-6 mg-t-20 mg-md-t-0" id="lnWrapper">
-                        <label> تاكيد كلمة المرور: <span class="tx-danger">*</span></label>
-                        {!! Form::password('confirm-password', array('class' => 'form-control','required')) !!}
-                    </div>
                 </div>
 
                 <div class="row row-sm mg-b-20">
                     <div class="col-lg-6">
                         <label class="form-label">حالة المستخدم</label>
                         <select name="status" id="select-beast" class="form-control  nice-select  custom-select">
-                            <option value="{{ $user->Status}}">{{ $user->Status}}</option>
+                            <option value="{{ $user->status}}">{{ $user->status == 1 ? 'مفعل' : 'غير مفعل'}}</option>
                             <option value="1">مفعل</option>
                             <option value="0">غير مفعل</option>
+                        </select>
+                    </div>
+                    <div class="parsley-input col-md-6 mg-t-20 mg-md-t-0" id="lnWrapper">
+                        <label class="form-label">الولاية<span class="tx-danger">*</span></label>
+                        <select name="state" id="select-beast" class="form-control  nice-select  custom-select" data-parsley-class-handler="#lnWrapper" required="">
+                            <option value="{{ $user->userData->state }}">{{ $user->userData->states[0]->state_name }}</option>
+                            @foreach($state as $name => $id)
+                                <option value="{{$id}}">{{$name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="row mg-b-20">
+                    <div class="parsley-input col-md-6 mg-t-20 mg-md-t-0" id="lnWrapper">
+                        <label class="form-label">المحلية<span class="tx-danger">*</span></label>
+                        <select name="loacale" class="form-control">
+                            <option selected value="{{ $user->userData->locale }}" readonly>{{ $user->userData->local[0]->local_name}}</option>
+                        </select>
+                    </div>
+                    <div class="parsley-input col-md-6 mg-t-20 mg-md-t-0" id="lnWrapper">
+                        <label class="form-label">المركز<span class="tx-danger">*</span></label>
+                        <select name="center" class="form-control">
+                            <option selected value="{{ $user->userData->center }}" readonly>{{ $user->userData->centers[0]->center_name}}</option>
                         </select>
                     </div>
                 </div>
@@ -116,7 +128,55 @@
 <!-- main-content closed -->
 @endsection
 @section('js')
+<script>
+    $(document).ready(function() {
+        $('select[name="state"]').on('change', function() {
+            console.log("test");
+            var satate = $(this).val();
+            if (satate) {
+                $.ajax({
+                    url: "{{ URL::to('record/getLocal') }}/" + satate,
+                    type: "GET",
+                    dataType: "json",
+                    success: function(data) {
+                        $('select[name="loacale"]').empty();
+                        $.each(data, function(key, value) {
+                            $('select[name="loacale"]').append('<option value="' +
+                                key + '">' + value + '</option>');
+                                console.log(data);
+                        });
+                    },
+                });
+            } else {
+                console.log('AJAX load did not work');
+            }
+        });
+    });
 
+    $(document).ready(function() {
+        $('select[name="loacale"]').on('click', function() {
+            console.log("test");
+            var local = $(this).val();
+            if (local) {
+                $.ajax({
+                    url: "{{ URL::to('record/getCenter') }}/" + local,
+                    type: "GET",
+                    dataType: "json",
+                    success: function(data) {
+                        $('select[name="center"]').empty();
+                        $.each(data, function(key, value) {
+                            $('select[name="center"]').append('<option value="' +
+                                key + '">' + value + '</option>');
+                                console.log(data);
+                        });
+                    },
+                });
+            } else {
+                console.log('AJAX load did not work');
+            }
+        });
+    });
+  </script>
 <!-- Internal Nice-select js-->
 <script src="{{URL::asset('assets/plugins/jquery-nice-select/js/jquery.nice-select.js')}}"></script>
 <script src="{{URL::asset('assets/plugins/jquery-nice-select/js/nice-select.js')}}"></script>

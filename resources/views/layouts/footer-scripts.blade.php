@@ -8,7 +8,7 @@
 <script src="{{URL::asset('assets/plugins/ionicons/ionicons.js')}}"></script>
 <!-- Moment js -->
 <script src="{{URL::asset('assets/plugins/moment/moment.js')}}"></script>
-
+<script src="{{ asset('assets/js/toastr.js') }}"></script>
 <!-- Rating js-->
 <script src="{{URL::asset('assets/plugins/rating/jquery.rating-stars.js')}}"></script>
 <script src="{{URL::asset('assets/plugins/rating/jquery.barrating.js')}}"></script>
@@ -25,19 +25,7 @@
 <script src="{{URL::asset('assets/plugins/sidebar/sidebar-custom.js')}}"></script>
 <!-- Eva-icons js -->
 <script src="{{URL::asset('assets/js/eva-icons.min.js')}}"></script>
-<!-- Internal Treeview js -->
-<script src="{{URL::asset('assets/plugins/treeview/treeview.js')}}"></script>
-<!--Internal  Notify js -->
-<script src="{{URL::asset('assets/plugins/notify/js/notifIt.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/notify/js/notifit-custom.js')}}"></script>
 @yield('js')
-<!--Internal Counters -->
-<script src="{{URL::asset('assets/plugins/counters/waypoints.min.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/counters/counterup.min.js')}}"></script>
-<!--Internal Time Counter -->
-<script src="{{URL::asset('assets/plugins/counters/jquery.missofis-countdown.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/counters/counter.js')}}"></script>
-
 <!-- Sticky js -->
 <script src="{{URL::asset('assets/js/sticky.js')}}"></script>
 <!-- custom js -->

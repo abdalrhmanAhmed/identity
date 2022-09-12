@@ -7,8 +7,12 @@ use Illuminate\Http\Request;
 //custom Spatie\Permission
 use Spatie\Permission\Models\Role;
 use App\Models\User;
+use App\Models\record\UserData;
+use App\Models\record\States;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+
 
 class userController extends Controller
 {
@@ -22,34 +26,59 @@ class userController extends Controller
     public function create()
     {
     $roles = Role::pluck('name','name')->all();
-    return view('admin.users.Add_user',compact('roles'));
+    $state = States::pluck('id','state_name')->all();
+    return view('admin.users.Add_user',compact('roles','state'));
     }//end of create
 
     public function store(Request $request)
     {
+        // return $request;
         try
         {
-            // return $request;
-            $this->validate($request, [
-                'name' => 'required',
-                'email' => 'required|email|unique:users,email',
-                'password' => 'required|same:confirm-password',
-                'roles' => 'required'
-            ]);//end of validation
-            
-            $input = $request->all();
-            $input['password'] = Hash::make($input['password']);
-            $input['status'] = $request->status;
-            
-            $user = User::create($input);
+
+        // amke the validate and stor the result in validator varibal
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|same:confirm-password',
+            'roles' => 'required',
+            'loacale' => 'required',
+            'state' => 'required',
+            'center' => 'required',
+            'id_no' => 'required',//exists:profiles
+            ]);
+    
+            // If there is a problem with the validation, return the error message, or else continue with the algorithm
+            if($validator->fails()) {
+                $test = $validator->errors();
+                session()->flash('faild');
+                return $test;redirect()->back();
+            }
+
+            $userData = new UserData;
+            $userData->state = $request->state;
+            $userData->locale = $request->loacale;
+            $userData->center = $request->center;
+            $userData->profile_id = $request->id_no;
+            $userData->save();
+
+            $user_data_id  = UserData::orderBy('id','DESC')->first()->id;
+
+            $user = new User;
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->status = $request->status;
+            $user->password = Hash::make($request->password);
+            $user->user_data_id = $user_data_id;
+            $user->save();
             $user->assignRole($request->input('roles'));
-            
-            return redirect()->route('admin.users.index')
-            ->with('success','User created successfully');
+            session()->flash('success');
+            return redirect()->route('admin.users.index');
         }
         catch(\Exception $e)
         {
-            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+            session()->flash('faild');
+            return $e;redirect()->back();
         }
 
     }//end of store
@@ -65,24 +94,26 @@ class userController extends Controller
     $user = User::find($id);
     $roles = Role::pluck('name','name')->all();
     $userRole = $user->roles->pluck('name','name')->all();
-    
-    return view('admin.users.edit',compact('user','roles','userRole'));
+    $state = States::pluck('id','state_name')->all();
+    return view('admin.users.edit',compact('user','roles','userRole','state'));
     }//end of edit
 
     public function update(Request $request, $id)
     {
+        // return $request;
     $this->validate($request, [
     'name' => 'required',
     'email' => 'required|email|unique:users,email,'.$id,
-    'password' => 'same:confirm-password',
-    'roles' => 'required'
+    'roles' => 'required',
+    'loacale' => 'required',
+    'state' => 'required',
+    'center' => 'required',
+    'id_no' => 'required',//exists:profiles
     ]);
     
     $input = $request->all();
     if(!empty($input['password'])){
         $input['password'] = Hash::make($input['password']);
-    }else{
-        $input = array_except($input,array('password'));
     }
     
     $user = User::find($id);
@@ -90,15 +121,18 @@ class userController extends Controller
     DB::table('model_has_roles')->where('model_id',$id)->delete();
     
     $user->assignRole($request->input('roles'));
-    
-    return redirect()->route('admin.users.index')
-    ->with('success','User updated successfully');
+    session()->flash('success');
+
+    $data = UserData::find($user->user_data_id);
+    $data->update($input);
+    return redirect()->route('admin.users.index');
     }//end of update
 
-    public function destroy($id)
+    public function destroy(Request $request,$id)
     {
+    $id = $request->user_id;
     User::find($id)->delete();
-    return redirect()->route('admin.users.index')
-    ->with('success','User deleted successfully');
+    session()->flash('delete');
+    return redirect()->route('admin.users.index');
     }//end of destroy
 }

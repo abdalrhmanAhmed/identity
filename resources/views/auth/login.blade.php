@@ -1,7 +1,7 @@
 @extends('layouts.master2')
 
 @section('title')
-تسجيل الدخول - جامعة الشيخ عبد الله البدري
+تسجيل الدخول - مورا سوفت للادارة القانونية
 @stop
 
 
@@ -21,17 +21,13 @@
 							<div class="row">
 								<div class="col-md-10 col-lg-10 col-xl-9 mx-auto">
 									<div class="card-sigin">
-										<div class="mb-5 d-flex"> <a href="{{ url('/' . $page='Home') }}"><img src="{{URL::asset('assets/img/brand/favicon.png')}}" class="sign-favicon ht-40" alt="logo"></a> &nbsp;<h1 class="main-logo1 ml-1 mr-0 my-auto tx-28" style="font-family: cairo"> جامعة الشيخ <span> عبد الله</span> البدري</h1></div>
+										<div class="mb-5 d-flex"> <a href="{{ url('/' . $page='Home') }}"><img src="{{URL::asset('assets/img/brand/main-logo.png')}}" class="sign-favicon ht-100" alt="logo"></a><h1 class="main-logo1 ml-1 mr-0 my-auto tx-28"></h1></div>
 										<div class="card-sigin">
 											<div class="main-signup-header">
 												<h2>مرحبا بك</h2>
 												<h5 class="font-weight-semibold mb-4"> تسجيل الدخول</h5>
-												@isset($url)
-                                                <form method="POST" action="{{ route('login.student') }}">
-												@else
-												<form method="POST" action="{{ route('login') }}">
-												@endisset
-													@csrf
+                                                <form method="POST" action="{{ route('login') }}">
+                                                 @csrf
 													<div class="form-group">
 													<label>البريد الالكتروني</label>
                                                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
@@ -64,18 +60,9 @@
                                                        </div>
                                                    </div>
 												  </div>
-												  	@isset($url)
                                                     <button type="submit" class="btn btn-main-primary btn-block">
-														{{ __('تسجيل دخول  الطلاب') }}
+                                                    {{ __('تسجيل الدخول') }}
                                                     </button>
-													@else
-													<button type="submit" class="btn btn-main-primary btn-block">
-														{{ __('تسجيل الدخول الموظين') }}
-														</button>
-													<a href="{{route('student.login')}}" class="btn btn-success btn-block">
-														{{ __('تسجيل دخول  الطلاب') }}
-													</a>
-													@endisset
 												</form>
 											</div>
 										</div>
@@ -89,7 +76,7 @@
                 <div class="col-md-6 col-lg-6 col-xl-7 d-none d-md-flex bg-primary-transparent">
 					<div class="row wd-100p mx-auto text-center">
 						<div class="col-md-12 col-lg-12 col-xl-12 my-auto mx-auto wd-100p">
-							<img src="{{URL::asset('assets/img/media/login.jpg')}}" class="my-auto ht-xl-80p wd-md-100p wd-xl-80p mx-auto" alt="logo">
+							<img src="{{URL::asset('assets/img/media/login.png')}}" class="my-auto ht-xl-80p wd-md-100p wd-xl-80p mx-auto" alt="logo">
 						</div>
 					</div>
 				</div>

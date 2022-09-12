@@ -10,11 +10,11 @@
 				<div class="breadcrumb-header justify-content-between">
 					<div class="left-content">
 						<div>
-						  <h2 class="main-content-title tx-24 mg-b-1 mg-b-lg-1">Hi, welcome back!</h2>
-						  <p class="mg-b-0">Sales monitoring dashboard template.</p>
+							<h2 class="main-content-title tx-24 mg-b-1 mg-b-lg-1">مرحبا بك !</h2>
+							<p class="mg-b-0"> السيد الموقر {{ Auth::user()->name }} نرجو أن يكون يومك سعيدا ...</p>
 						</div>
 					</div>
-					<div class="main-dashboard-header-right">
+					{{-- <div class="main-dashboard-header-right">
 						<div>
 							<label class="tx-13">Customer Ratings</label>
 							<div class="main-star">
@@ -29,7 +29,7 @@
 							<label class="tx-13">Offline Sales</label>
 							<h5>783,675</h5>
 						</div>
-					</div>
+					</div> --}}
 				</div>
 				<!-- /breadcrumb -->
 @endsection
@@ -37,100 +37,273 @@
 @include('errors.exceptions')
 				<!-- row -->
 				<div class="row row-sm">
-					<div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
-						<div class="card overflow-hidden sales-card bg-primary-gradient">
-							<div class="pl-3 pt-3 pr-3 pb-2 pt-0">
-								<div class="">
-									<h6 class="mb-3 tx-12 text-white">TODAY ORDERS</h6>
-								</div>
-								<div class="pb-0 mt-0">
-									<div class="d-flex">
-										<div class="">
-											<h4 class="tx-20 font-weight-bold mb-1 text-white">$5,74.12</h4>
-											<p class="mb-0 tx-12 text-white op-7">Compared to last week</p>
+					<div class="col-lg-6 col-xl-3 col-md-6 col-12">
+						<div class="card bg-primary-gradient text-white ">
+							<div class="card-body">
+								<div class="row">
+									<div class="col-6">
+										<div class="icon1 mt-2 text-center">
+											<i class="fe fe-users tx-40"></i>
 										</div>
-										<span class="float-right my-auto mr-auto">
-											<i class="fas fa-arrow-circle-up text-white"></i>
-											<span class="text-white op-7"> +427</span>
-										</span>
+									</div>
+									<div class="col-6">
+										<div class="mt-0 text-center">
+											<span class="text-white">المنتسبين</span>
+											<h2 class="text-white mb-0">{{ $users }}</h2>
+										</div>
 									</div>
 								</div>
 							</div>
-							<span id="compositeline" class="pt-1">5,9,5,6,4,12,18,14,10,15,12,5,8,5,12,5,12,10,16,12</span>
 						</div>
 					</div>
-					<div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
-						<div class="card overflow-hidden sales-card bg-danger-gradient">
-							<div class="pl-3 pt-3 pr-3 pb-2 pt-0">
-								<div class="">
-									<h6 class="mb-3 tx-12 text-white">TODAY EARNINGS</h6>
-								</div>
-								<div class="pb-0 mt-0">
-									<div class="d-flex">
-										<div class="">
-											<h4 class="tx-20 font-weight-bold mb-1 text-white">$1,230.17</h4>
-											<p class="mb-0 tx-12 text-white op-7">Compared to last week</p>
+					<div class="col-lg-6 col-xl-3 col-md-6 col-12">
+						<div class="card bg-danger-gradient text-white">
+							<div class="card-body">
+								<div class="row">
+									<div class="col-6">
+										<div class="icon1 mt-2 text-center">
+											<i class="fe fe-home tx-40"></i>
 										</div>
-										<span class="float-right my-auto mr-auto">
-											<i class="fas fa-arrow-circle-down text-white"></i>
-											<span class="text-white op-7"> -23.09%</span>
-										</span>
+									</div>
+									<div class="col-6">
+										<div class="mt-0 text-center">
+											<span class="text-white">المراكز</span>
+											<h2 class="text-white mb-0">{{ $centers }}</h2>
+										</div>
 									</div>
 								</div>
 							</div>
-							<span id="compositeline2" class="pt-1">3,2,4,6,12,14,8,7,14,16,12,7,8,4,3,2,2,5,6,7</span>
 						</div>
 					</div>
-					
-					<div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
-						<div class="card overflow-hidden sales-card bg-success-gradient">
-							<div class="pl-3 pt-3 pr-3 pb-2 pt-0">
-								<div class="">
-									<h6 class="mb-3 tx-12 text-white">TOTAL EARNINGS</h6>
-								</div>
-								<div class="pb-0 mt-0">
-									<div class="d-flex">
-										<div class="">
-											<h4 class="tx-20 font-weight-bold mb-1 text-white">$7,125.70</h4>
-											<p class="mb-0 tx-12 text-white op-7">Compared to last week</p>
+					<div class="col-lg-6 col-xl-3 col-md-6 col-12">
+						<div class="card bg-success-gradient text-white">
+							<div class="card-body">
+								<div class="row">
+									<div class="col-6">
+										<div class="icon1 mt-2 text-center">
+											<i class="fe fe-file tx-40"></i>
 										</div>
-										<span class="float-right my-auto mr-auto">
-											<i class="fas fa-arrow-circle-up text-white"></i>
-											<span class="text-white op-7"> 52.09%</span>
-										</span>
+									</div>
+									<div class="col-6">
+										<div class="mt-0 text-center">
+											<span class="text-white">الملفات المنشئة</span>
+											<h2 class="text-white mb-0">{{ $profiles }}</h2>
+										</div>
 									</div>
 								</div>
 							</div>
-							<span id="compositeline3" class="pt-1">5,10,5,20,22,12,15,18,20,15,8,12,22,5,10,12,22,15,16,10</span>
 						</div>
 					</div>
-					<div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
-						<div class="card overflow-hidden sales-card bg-warning-gradient">
-							<div class="pl-3 pt-3 pr-3 pb-2 pt-0">
-								<div class="">
-									<h6 class="mb-3 tx-12 text-white">PRODUCT SOLD</h6>
-								</div>
-								<div class="pb-0 mt-0">
-									<div class="d-flex">
-										<div class="">
-											<h4 class="tx-20 font-weight-bold mb-1 text-white">$4,820.50</h4>
-											<p class="mb-0 tx-12 text-white op-7">Compared to last week</p>
+					<div class="col-lg-6 col-xl-3 col-md-6 col-12">
+						<div class="card bg-warning-gradient text-white">
+							<div class="card-body">
+								<div class="row">
+									<div class="col-6">
+										<div class="icon1 mt-2 text-center">
+											<i class="fa fa-ticket-alt tx-40"></i>
 										</div>
-										<span class="float-right my-auto mr-auto">
-											<i class="fas fa-arrow-circle-down text-white"></i>
-											<span class="text-white op-7"> -152.3</span>
-										</span>
+									</div>
+									<div class="col-6">
+										<div class="mt-0 text-center">
+											<span class="text-white">التذاكر الصادرة</span>
+											<h2 class="text-white mb-0">{{ $teckets }}</h2>
+										</div>
 									</div>
 								</div>
 							</div>
-							<span id="compositeline4" class="pt-1">5,9,5,6,4,12,18,14,10,15,12,5,8,5,12,5,12,10,16,12</span>
 						</div>
 					</div>
 				</div>
 				<!-- row closed -->
+<hr>
+				<!-- row start -->
 
+				<div class="row">
+					<div class="col-sm-12 col-lg-6 col-xl-3">
+						<div class="card card-img-holder">
+							<div class="card-body list-icons">
+								<div class="clearfix">
+									<div class="float-right  mt-2">
+										<span class="text-primary ">
+											<i class="si si-basket-loaded tx-30"></i>
+										</span>
+									</div>
+									<div class="float-left text-right">
+										<p class="card-text text-muted mb-1">Services</p>
+										<h3>$124</h3>
+									</div>
+								</div>
+								<div class="card-footer p-0">
+									<p class="text-muted mb-0 pt-4"><i class="si si-arrow-down-circle text-warning mr-2" aria-hidden="true"></i>Daily Orders</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-12 col-lg-6 col-xl-3">
+						<div class="card card-img-holder">
+							<div class="card-body list-icons">
+								<div class="clearfix">
+									<div class="float-right  mt-2">
+										<span class="text-primary ">
+											<i class="si si-credit-card tx-30"></i>
+										</span>
+									</div>
+									<div class="float-left">
+										<p class="card-text text-muted mb-1">Sources</p>
+										<h3>$124</h3>
+									</div>
+								</div>
+								<div class="card-footer p-0">
+									<p class="text-muted mb-0 pt-4"><i class="si si-arrow-up-circle text-success mr-2"></i>Less Sales</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-12 col-lg-6 col-xl-3">
+						<div class="card card-img-holder">
+							<div class="card-body list-icons">
+								<div class="clearfix">
+									<div class="float-right  mt-2">
+										<span class="text-primary">
+											<i class="si si-chart tx-30"></i>
+										</span>
+									</div>
+									<div class="float-left">
+										<p class="card-text text-muted mb-1">Income</p>
+										<h3>21%</h3>
+									</div>
+								</div>
+								<div class="card-footer p-0">
+									<p class="text-muted mb-0 pt-4"><i class="si si-exclamation text-info mr-2"></i>From Last Month</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-12 col-lg-6 col-xl-3">
+						<div class="card card-img-holder">
+							<div class="card-body list-icons">
+								<div class="clearfix">
+									<div class="float-right  mt-2">
+										<span class="text-primary">
+											<i class="si si-social-facebook tx-30"></i>
+										</span>
+									</div>
+									<div class="float-left">
+										<p class="card-text text-muted mb-1">Followers</p>
+										<h3>24K</h3>
+									</div>
+								</div>
+								<div class="card-footer p-0">
+									<p class="text-muted mb-0 pt-4"><i class="si si-check mr-1 text-primary mr-2"></i> Recent History</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					{{-- <div class="col-sm-12 col-xl-4 col-lg-12">
+						<div class="card user-wideget user-wideget-widget widget-user">
+							<div class="widget-user-header bg-primary">
+								<h3 class="widget-user-username">Alexander Pierce</h3>
+								<h5 class="widget-user-desc">Founder &amp; CEO</h5>
+							</div>
+							<div class="widget-user-image">
+								<img src="{{URL::asset('assets/img/faces/17.jpg')}}" class="brround" alt="User Avatar">
+							</div>
+							<div class="user-wideget-footer">
+								<div class="row">
+									<div class="col-sm-4 border-left">
+										<div class="description-block">
+											<h5 class="description-header">3,200</h5>
+											<span class="description-text">SALES</span>
+										</div>
+									</div>
+									<div class="col-sm-4 border-left">
+										<div class="description-block">
+											<h5 class="description-header">13,000</h5>
+											<span class="description-text">FOLLOWERS</span>
+										</div>
+									</div>
+									<div class="col-sm-4">
+										<div class="description-block">
+											<h5 class="description-header">35</h5>
+											<span class="description-text">PRODUCTS</span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div> --}}
+					{{-- <div class="col-sm-12 col-xl-4 col-lg-12">
+						<div class="card user-wideget user-wideget-widget widget-user">
+							<div class="widget-user-header bg-danger">
+								<h3 class="widget-user-username">Alexander Pierce</h3>
+								<h5 class="widget-user-desc">Founder &amp; CEO</h5>
+							</div>
+							<div class="widget-user-image">
+								<img src="{{URL::asset('assets/img/faces/12.jpg')}}" class="brround" alt="User Avatar">
+							</div>
+							<div class="user-wideget-footer">
+								<div class="row">
+									<div class="col-sm-4 border-left">
+										<div class="description-block">
+											<h5 class="description-header">3,200</h5>
+											<span class="description-text">SALES</span>
+										</div>
+									</div>
+									<div class="col-sm-4 border-left">
+										<div class="description-block">
+											<h5 class="description-header">13,000</h5>
+											<span class="description-text">FOLLOWERS</span>
+										</div>
+									</div>
+									<div class="col-sm-4">
+										<div class="description-block">
+											<h5 class="description-header">35</h5>
+											<span class="description-text">PRODUCTS</span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-12 col-xl-4 col-lg-12">
+						<div class="card user-wideget user-wideget-widget widget-user">
+							<div class="widget-user-header bg-success">
+								<h3 class="widget-user-username">Alexander Pierce</h3>
+								<h5 class="widget-user-desc">Founder &amp; CEO</h5>
+							</div>
+							<div class="widget-user-image">
+								<img src="{{URL::asset('assets/img/faces/5.jpg')}}" class="brround" alt="User Avatar">
+							</div>
+							<div class="user-wideget-footer">
+								<div class="row">
+									<div class="col-sm-4 border-left">
+										<div class="description-block">
+											<h5 class="description-header">3,200</h5>
+											<span class="description-text">SALES</span>
+										</div>
+									</div>
+									<div class="col-sm-4 border-left">
+										<div class="description-block">
+											<h5 class="description-header">13,000</h5>
+											<span class="description-text">FOLLOWERS</span>
+										</div>
+									</div>
+									<div class="col-sm-4">
+										<div class="description-block">
+											<h5 class="description-header">35</h5>
+											<span class="description-text">PRODUCTS</span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div> --}}
+				</div>
+
+				<!-- row closed -->
+<hr>
 				<!-- row opened -->
-				<div class="row row-sm">
+				{{-- <div class="row row-sm">
 					<div class="col-md-12 col-lg-12 col-xl-7">
 						<div class="card">
 							<div class="card-header bg-transparent pd-b-0 pd-t-20 bd-b-0">
@@ -168,11 +341,11 @@
 							</div>
 						</div>
 					</div>
-				</div>
+				</div> --}}
 				<!-- row closed -->
 
 				<!-- row opened -->
-				<div class="row row-sm">
+				{{-- <div class="row row-sm">
 					<div class="col-xl-4 col-md-12 col-lg-12">
 						<div class="card">
 							<div class="card-header pb-1">
@@ -346,11 +519,11 @@
 							</div>
 						</div>
 					</div>
-				</div>
+				</div> --}}
 				<!-- row close -->
 
 				<!-- row opened -->
-				<div class="row row-sm row-deck">
+				{{-- <div class="row row-sm row-deck">
 					<div class="col-md-12 col-lg-4 col-xl-4">
 						<div class="card card-dashboard-eight pb-2">
 							<h6 class="card-title">Your Top Countries</h6><span class="d-block mg-b-10 text-muted tx-12">Sales performance revenue based by country</span>
@@ -435,7 +608,7 @@
 							</div>
 						</div>
 					</div>
-				</div>
+				</div> --}}
 				<!-- /row -->
 			</div>
 		</div>

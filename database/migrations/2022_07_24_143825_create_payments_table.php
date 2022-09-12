@@ -15,18 +15,26 @@ class CreatePaymentsTable extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
 			$table->increments('id');
-			$table->tinyInteger('sno');
+			$table->integer('sno');
 			$table->string('uuid');
-			$table->integer('register');
-			$table->integer('cards');
-			$table->integer('study');
-			$table->integer('degree');
-			$table->integer('statement');
-			$table->integer('arrears');
-			$table->string('ather');
+			$table->string('fac');
+			$table->string('depart');
+			$table->string('class_no');
+			$table->integer('card_fees');
+			$table->integer('reg_fees');
+			$table->integer('study_fees');
+			$table->integer('degree_fees');
+			$table->integer('latest');
+			$table->integer('fine_fees');
+			$table->integer('other_fees');
+			$table->integer('statment_fees');
+			$table->integer('Currency');
 			$table->integer('user_id');
-			$table->string('s_name', 255);
-			$table->timestamps();
+			$table->integer('phone');
+			$table->integer('total');
+			$table->string('sname', 255);
+            $table->datetime('collect_date');
+            $table->timestamps();
         });
     }
 
