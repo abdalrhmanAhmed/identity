@@ -16,6 +16,9 @@ class CreateHospetalsTable extends Migration
         Schema::create('hospetals', function (Blueprint $table) {
             $table->id();
             $table->integer('local_id');
+            $table->string('h_no');
+            $table->integer('id_no');
+            $table->integer('type');
             $table->string('files_route', 255);
             $table->string('descrption', 255);
             $table->timestamps();

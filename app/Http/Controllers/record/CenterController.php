@@ -142,6 +142,7 @@ class CenterController extends Controller
         catch(\Exception $e)
         {
             session()->flash('error');
-            return $e; redirect()->back();        }
+            return $e; redirect()->back();        
+        }
     }
 }

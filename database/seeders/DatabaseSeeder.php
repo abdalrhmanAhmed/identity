@@ -22,5 +22,6 @@ class DatabaseSeeder extends Seeder
         $this->call(BloodTableSeeder::class);
         $this->call(administrativeUnitsSeeder::class);
         $this->call(popularAdministrationsSeeder::class);
+        $this->call(UserData::class);
     }
 }

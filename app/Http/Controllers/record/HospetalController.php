@@ -10,6 +10,8 @@ use App\Models\record\UserData;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+
 
 class HospetalController extends Controller
 {
@@ -47,13 +49,8 @@ class HospetalController extends Controller
     {
         $hospetal = Hospetal::get();
         $locales = locale::get();
-        return view('admin.record.hospetals.barth.index',compact('hospetal','locales'));
-    }
-    public function indexd()
-    {
-        $hospetal = Hospetal::get();
-        $locales = locale::get();
-        return view('admin.record.hospetals.dathe.index',compact('hospetal','locales'));
+        $users = User::first();
+        return view('admin.record.hospetals.barth.index',compact('hospetal','locales','users'));
     }
 
     /**
@@ -72,23 +69,44 @@ class HospetalController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function storeb(Request $request)
+    public function store(Request $request)
     {
         // return $request;
-        $h_no = $this->IDGenerator(new Hospetal(), 'h_no', 5, 'BDOC');
         $user = User::where('id',Auth::id())->first();
         $data = UserData::where('id',$user->user_data_id)->first()->locale;
-        $local_id = locale::where('id',$data)->first();
-        $id_no = 1;
-        $descrption = "kopjkf";
-        $type = 1;
-        $file = 'jiofgj';
-        return $local_id;
+        $local_id = locale::where('id',$data)->first()->id;
+       try
+       {
+   
+         // amke the validate and stor the result in validator varibal
+         $validator = Validator::make($request->all(), [
+           'id_no' => 'required',
+           'descrption' => 'required',
+           'files' => 'required',
+         ]);
+   
+         // If there is a problem with the validation, return the error message, or else continue with the algorithm
+         if($validator->fails()) {
+             return $validator->errors();
+         }
+
+           $hospetal = new Hospetal;
+           $hospetal->h_no = $this->IDGenerator(new Hospetal(), 'h_no', 5, 'BDOC');
+           $hospetal->local_id = $local_id;
+           $hospetal->id_no = $request->id_no;
+           $hospetal->descrption = $request->descrption;
+           $hospetal->type = $request->type;//$request->type;
+           $hospetal->files_route = 'test';//$request->files;
+           $hospetal->save();
+           session()->flash('success');
+           return redirect()->back();
+       }
+       catch(\Exception $e)
+       {
+           return $e;redirect()->back();
+       }
     }    
-    public function stored(Request $request)
-    {
-        //
-    }
+
 
     /**
      * Display the specified resource.
@@ -107,9 +125,23 @@ class HospetalController extends Controller
      * @param  \App\Models\Hospetal  $hospetal
      * @return \Illuminate\Http\Response
      */
-    public function edit(Hospetal $hospetal)
+    public function edit(Request $request)
     {
-        //
+            //   return $request;
+              try{
+                  $center = Hospetal::where('id',$request->id)->update([
+                    'id_no' => $request->id_no,
+                    'descrption' => $request->descrption,
+                    'type' => $request->type,
+                    'files_route' => 'test'
+                  ]);
+                  session()->flash('update');
+                  return redirect()->back();
+              }
+              catch(\Exception $e)
+              {
+                  return $e;redirect()->back();
+              }   
     }
 
     /**
@@ -130,8 +162,18 @@ class HospetalController extends Controller
      * @param  \App\Models\Hospetal  $hospetal
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Hospetal $hospetal)
+    public function destroy(Request $hospetal)
     {
-        //
+        try
+        {
+            $town = Hospetal::destroy($hospetal->id);
+            session()->flash('delete');
+            return redirect()->back();
+        }
+        catch(\Exception $e)
+        {
+            session()->flash('error');
+            return $e; redirect()->back();        
+        }
     }
 }

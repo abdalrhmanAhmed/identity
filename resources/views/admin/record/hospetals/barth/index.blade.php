@@ -36,7 +36,7 @@
 				<div class="breadcrumb-header justify-content-between">
 					<div class="my-auto">
 						<div class="d-flex">
-							<h4 class="content-title mb-0 my-auto">المستشفى</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ الولادة</span>
+							<h4 class="content-title mb-0 my-auto">المستشفى</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ الولادة و الوفيات</span>
 						</div>
 					</div>
 				</div>
@@ -64,8 +64,11 @@
 											<tr>
 												<th class="wd-5p border-bottom-0  text-center">#</th>
 												<th class="wd-10p border-bottom-0 text-center">رقم الشهادة</th>
+												<th class="wd-10p border-bottom-0 text-center">نوع الشهادة</th>
+												<th class="wd-10p border-bottom-0 text-center">وصف الشهادة</th>
 												<th class="wd-10p border-bottom-0 text-center">إسم المركز</th>
 												<th class="wd-25p border-bottom-0 text-center">مقدم الطلب</th>
+												<th class="wd-25p border-bottom-0 text-center">منشئ الطلب</th>
 												<th class="wd-25p border-bottom-0 text-center">المرفق</th>
 												<th class="wd-10p border-bottom-0 text-center">العمليات</th>
 											</tr>
@@ -74,10 +77,13 @@
 											@foreach ($hospetal as $center)
 												<tr>
 													<td class="text-center">{{ $loop->index+1 }}</td>
-													<td class="text-center">{{ $loop->index+1 }}</td>
-													<td class="text-center">{{ $center->local_id}}</td>
-													<td class="text-center">{{ $center->descrption }}</td>
-													<td class="text-center">{{ $center->files_route }}</td>
+													<td class="text-center">{{ $center->h_no }}</td>
+													<td class="text-center {{$center->type == 1 ?  'text-success': 'text-danger'}}">{{ $center->type == 1 ? 'شهادة ميلاد': 'شهادة وفاة' }}</td>
+													<td class="text-center">{{ $center->descrption}}</td>
+													<td class="text-center">{{ $users->userData->local[0]->local_name}}</td>
+													<td class="text-center">احمد الطيب</td>
+													<td class="text-center">{{ Auth::user()->name }}</td>
+													<td class="text-center"><i class="fe fe-file tx-20 text-warning" style="cursor: pointer"></i></td>
 													<td class="text-center">
 														<div class="dropdown">
 															<button aria-expanded="false" aria-haspopup="true"
@@ -100,20 +106,27 @@
 													<div class="modal-dialog modal-dialog-centered" role="document">
 														<div class="modal-content modal-content-demo">
 															<div class="modal-header">
-																<h6 class="modal-title"> شهادة الميلاد</h6><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+																<h6 class="modal-title"> شهادة الشهادة</h6><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
 															</div>
-															<form action="{{ route('center.edit', $center->id) }}" method="PUT">
+															<form action="{{ route('barthedit') }}" method="post">
 																{{ csrf_field() }}
-																@method('PUT')
+																@method('post')
 																<div class="modal-body">
 																	<label for="">وصف الحالة</label>
-																	<input type="text" name="descrption" class="form-control" required>
+																	<input type="text" name="descrption" class="form-control" value="{{ $center->descrption }}" >
+																	<input type="hidden" name="id" value="{{ $center->id }}">
 																	<br>
 																	<label for="">الرقم الوطني لمقدم الطلب</label>
-																	<input type="text" name="id_no" class="form-control" required>
+																	<input type="text" name="id_no" class="form-control" value="{{ $center->id_no }}" >
 																	<br>
 																	<label for="">إسم مقدم الطلب</label>
 																	<input type="text" name="client_name" class="form-control" disabled>
+																	<br>
+																	<label class="form-label">نوع الشهادة</label>
+																	<select name="type" id="select-beast" class="form-control" data-parsley-class-handler="#lnWrapper">
+																		<option value="1" {{ $center->type == 1 ? 'selected' : ''}}>شهادة ميلاد</option>
+																		<option value="2" {{ $center->type == 2 ? 'selected' : ''}}>شهادة وفاة</option>
+																	</select>
 																	<br>
 																	<div class="col-sm-12 col-md-4 mg-t-10 mg-sm-t-0">
 																		<label for="">ملف الحالة</label>
@@ -133,18 +146,21 @@
 													<div class="modal-dialog modal-dialog-centered" role="document">
 														<div class="modal-content modal-content-demo">
 															<div class="modal-header">
-																<h6 class="modal-title">حذف شهادة الميلاد</h6><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+																<h6 class="modal-title">حذف  الشهادة</h6><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
 															</div>
+															<form action="{{ route('barthdelete') }}" method="post">
+																{{ csrf_field() }}
+																@method('post')
 																<div class="modal-body">
-																	<label for="">هل أنت متأكد من عملية حذف الشهادة ؟</label>
-																	<input disabled type="text" name="center_name" value="{{ $center->center_name }}" class="form-control">
+																	<label for="">هل أنت متأكد من عملية حذف الشهادة بالرقم الآتي ؟</label>
+																	<input disabled type="text" name="h_no" value="{{ $center->h_no }}" class="form-control">
+																	<input type="hidden" name="id" value="{{ $center->id }}">
 																</div>
 																<div class="modal-footer">
-                                                                    {!! Form::open(['method' => 'DELETE', 'route' => ['center.destroy',
-                                                                    $center->id], 'style' => 'display:inline']) !!}
-                                                                    {!! Form::submit('حذف', ['class' => 'btn btn-danger btn-sm']) !!}
-                                                                    {!! Form::close() !!}																	<button class="btn ripple btn-secondary btn-sm" data-dismiss="modal" type="button">إلغاء</button>
+																	<button class="btn ripple btn-danger btn-sm" type="submit">حذف</button>
+																	<button class="btn ripple btn-secondary btn-sm" data-dismiss="modal" type="button">إلغاء</button>
 																</div>
+															</form>
 														</div>
 													</div>
 												</div>
@@ -161,7 +177,7 @@
 							<div class="modal-dialog modal-dialog-centered" role="document">
 								<div class="modal-content modal-content-demo">
 									<div class="modal-header">
-										<h6 class="modal-title">إضافة  شهادة ولادة</h6><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+										<h6 class="modal-title">إضافة  شهادة جديدة</h6><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
 									</div>
 									<form action="{{ route('barthcreate') }}" method="POST">
 										{{ csrf_field() }}
@@ -175,6 +191,12 @@
 											<label for="">إسم مقدم الطلب</label>
 											<input type="text" name="client_name" class="form-control" disabled>
                                             <br>
+											<label class="form-label">نوع الشهادة</label>
+											<select name="type" id="select-beast" class="form-control" data-parsley-class-handler="#lnWrapper" required="">
+												<option value="1">شهادة ميلاد</option>
+												<option value="2">شهادة وفاة</option>
+											</select>
+											<br>
 											<div class="col-sm-12 col-md-4 mg-t-10 mg-sm-t-0">
 												<label for="">ملف الحالة</label>
 												<input class="dropify" type="file" name="files" accept=".pdf,.png,.jpg,.jpeg"/>
