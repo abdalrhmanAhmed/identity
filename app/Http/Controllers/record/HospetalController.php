@@ -23,7 +23,9 @@ class HospetalController extends Controller
     }
     public function indexd()
     {
-        return view('admin.record.hospetals.dathe.index');
+        $hospetal = Hospetal::get();
+        $locales = locale::get();
+        return view('admin.record.hospetals.dathe.index',compact('hospetal','locales'));
     }
 
     /**

@@ -14,22 +14,6 @@
 							<p class="mg-b-0"> السيد الموقر {{ Auth::user()->name }} نرجو أن يكون يومك سعيدا ...</p>
 						</div>
 					</div>
-					{{-- <div class="main-dashboard-header-right">
-						<div>
-							<label class="tx-13">Customer Ratings</label>
-							<div class="main-star">
-								<i class="typcn typcn-star active"></i> <i class="typcn typcn-star active"></i> <i class="typcn typcn-star active"></i> <i class="typcn typcn-star active"></i> <i class="typcn typcn-star"></i> <span>(14,873)</span>
-							</div>
-						</div>
-						<div>
-							<label class="tx-13">Online Sales</label>
-							<h5>563,275</h5>
-						</div>
-						<div>
-							<label class="tx-13">Offline Sales</label>
-							<h5>783,675</h5>
-						</div>
-					</div> --}}
 				</div>
 				<!-- /breadcrumb -->
 @endsection
@@ -115,9 +99,8 @@
 					</div>
 				</div>
 				<!-- row closed -->
-<hr>
+				<hr>
 				<!-- row start -->
-
 				<div class="row">
 					<div class="col-sm-12 col-lg-6 col-xl-3">
 						<div class="card card-img-holder">
@@ -129,12 +112,12 @@
 										</span>
 									</div>
 									<div class="float-left text-right">
-										<p class="card-text text-muted mb-1">Services</p>
-										<h3>$124</h3>
+										<p class="card-text text-muted mb-1">جملة المدخلات</p>
+										<h3>SUD 10000</h3>
 									</div>
 								</div>
 								<div class="card-footer p-0">
-									<p class="text-muted mb-0 pt-4"><i class="si si-arrow-down-circle text-warning mr-2" aria-hidden="true"></i>Daily Orders</p>
+									<p class="text-muted mb-0 pt-4"><i class="si si-arrow-down-circle text-warning mr-2" aria-hidden="true"></i> رصيد مدخل</p>
 								</div>
 							</div>
 						</div>
@@ -149,12 +132,12 @@
 										</span>
 									</div>
 									<div class="float-left">
-										<p class="card-text text-muted mb-1">Sources</p>
-										<h3>$124</h3>
+										<p class="card-text text-muted mb-1">مدخلات التذاكر</p>
+										<h3>SUD 700</h3>
 									</div>
 								</div>
 								<div class="card-footer p-0">
-									<p class="text-muted mb-0 pt-4"><i class="si si-arrow-up-circle text-success mr-2"></i>Less Sales</p>
+									<p class="text-muted mb-0 pt-4"><i class="si si-arrow-up-circle text-success mr-2"></i> رصيد مكتسب</p>
 								</div>
 							</div>
 						</div>
@@ -169,12 +152,12 @@
 										</span>
 									</div>
 									<div class="float-left">
-										<p class="card-text text-muted mb-1">Income</p>
+										<p class="card-text text-muted mb-1">النسب الربحية</p>
 										<h3>21%</h3>
 									</div>
 								</div>
 								<div class="card-footer p-0">
-									<p class="text-muted mb-0 pt-4"><i class="si si-exclamation text-info mr-2"></i>From Last Month</p>
+									<p class="text-muted mb-0 pt-4"><i class="si si-exclamation text-info mr-2"></i> حتى الآن</p>
 								</div>
 							</div>
 						</div>
@@ -185,16 +168,16 @@
 								<div class="clearfix">
 									<div class="float-right  mt-2">
 										<span class="text-primary">
-											<i class="si si-social-facebook tx-30"></i>
+											<i class="fa fa-users tx-30"></i>
 										</span>
 									</div>
 									<div class="float-left">
-										<p class="card-text text-muted mb-1">Followers</p>
+										<p class="card-text text-muted mb-1">المواطنين الموثقين</p>
 										<h3>24K</h3>
 									</div>
 								</div>
 								<div class="card-footer p-0">
-									<p class="text-muted mb-0 pt-4"><i class="si si-check mr-1 text-primary mr-2"></i> Recent History</p>
+									<p class="text-muted mb-0 pt-4"><i class="si si-check mr-1 text-primary mr-2"></i> مضاف إليه الأرشيف</p>
 								</div>
 							</div>
 						</div>
@@ -299,9 +282,8 @@
 						</div>
 					</div> --}}
 				</div>
-
 				<!-- row closed -->
-<hr>
+				<hr>
 				<!-- row opened -->
 				{{-- <div class="row row-sm">
 					<div class="col-md-12 col-lg-12 col-xl-7">

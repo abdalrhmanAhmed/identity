@@ -176,6 +176,7 @@
 							</div>
 						</div>
 				</div>
+				</div>
 				<!-- row closed -->
 			</div>
 			<!-- Container closed -->
