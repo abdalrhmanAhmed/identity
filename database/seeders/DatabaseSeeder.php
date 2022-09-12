@@ -15,5 +15,12 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(permissionTabelSeeder::class);
         $this->call(AdminUserSeeder::class);
+        $this->call(CountrySeeder::class);
+        $this->call(sudanStatesSeeder::class);
+        $this->call(statesLocalsSeeder::class);
+        $this->call(statesLocalsSeeder::class);
+        $this->call(BloodTableSeeder::class);
+        $this->call(administrativeUnitsSeeder::class);
+        $this->call(popularAdministrationsSeeder::class);
     }
 }
