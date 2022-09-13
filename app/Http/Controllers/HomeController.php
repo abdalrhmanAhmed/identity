@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\record\center;
+use App\Models\record\Center;
 use App\Models\record\Profile;
 use App\Models\record\Ticket;
 use App\Models\User;
@@ -28,7 +28,7 @@ class HomeController extends Controller
     public function index()
     {
         $users = count(User::get());
-        $centers = count(center::get());
+        $centers = count(Center::get());
         $profiles = count(Profile::get());
         $teckets = count(Ticket::get());
         return view('home',compact('users','centers','profiles','teckets'));

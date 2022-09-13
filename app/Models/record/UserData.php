@@ -5,7 +5,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\record\States;
 use App\Models\record\locale;
-use App\Models\record\center;
+use App\Models\record\Center;
 // use App\Models\record\Ticket;
 
 
@@ -26,7 +26,7 @@ class UserData extends Model
         return $this->hasMany(locale::class,'id','locale');
     }
     public function centers(){
-        return $this->hasMany(center::class,'id','center');
+        return $this->hasMany(Center::class,'id','center');
     }
     // public function profile(){
     //     return $this->hasMany(locale::class,'id','locale');

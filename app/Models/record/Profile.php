@@ -11,7 +11,7 @@ use App\Models\User;
 class Profile extends Model
 {
     use HasFactory;
-       protected $table = 'profiles';
+    protected $table = 'profiles';
     public $timestamps = true;
     protected $fillable = array('client_name','client_phone','client_id','user_id','status','payed','tiket_id','created_at');
     

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\record;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
-use App\Models\record\FailedJobs;
+use App\Models\record\falids_jobs;
 use Spatie\Permission\Models\Permission;
 
 class FailedJobsController extends Controller
@@ -17,7 +17,7 @@ class FailedJobsController extends Controller
    */
   public function index()
   {
-    $FailedJobsName = FailedJobs::all();
+    $FailedJobsName = falids_jobs::all();
     return view('admin.record.failed_jobs.index', compact('FailedJobsName'));
   }
 
@@ -40,14 +40,15 @@ class FailedJobsController extends Controller
   {
     try
     {
-        // return $request;
-        $this->validate($request, [
+        $request->validate([
             'name' => 'required',
         ]);//end of validation
 
-        $FailedJobsName = FailedJobs::create(['name' => $request->name]);
+        $faildJobs = new falids_jobs();
+        $faildJobs->name = $request->name;
+        $faildJobs->save();
         session()->flash('success');
-        return redirect()->route('admin.record.FailedJobs.index');
+        return redirect()->back();
     }
     catch(\Exception $e)
     {
@@ -76,7 +77,7 @@ class FailedJobsController extends Controller
   {
     try
     {
-        $FailedJobsName = FailedJobs::where('id', $id)
+        $FailedJobsName = falids_jobs::where('id', $id)
         ->update(['name' => $request->name]);
         session()->flash('success');
         return redirect()->route('admin.record.FailedJobs.index');
@@ -108,7 +109,7 @@ class FailedJobsController extends Controller
   {
     try
     {
-        $FailedJobsName = FailedJobs::destroy($id);
+        $FailedJobsName = falids_jobs::destroy($id);
         session()->flash('success');
         return redirect()->route('admin.record.FailedJobs.index');
     }

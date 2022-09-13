@@ -2,13 +2,12 @@
 
 namespace App\Models\record;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class FailedJobs extends Model
+class falids_jobs extends Model
 {
+    use HasFactory;
 
-    protected $table = 'failed_jobs';
-    public $timestamps = true;
     protected $guarded = [];
-
 }

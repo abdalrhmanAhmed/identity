@@ -17,8 +17,8 @@ class UserDataSeeder extends Seeder
         $userData = UserData::create([
             'id' => 1,
             'state' => 1,
-            'locale' => 1,
-            'password' => 1,
+            'locale' => 8,
+            'center' => 1,
             'profile_id' => 1
         ]);
     }
