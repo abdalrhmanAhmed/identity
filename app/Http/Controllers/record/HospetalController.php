@@ -70,8 +70,7 @@ class HospetalController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        // return $request;
+    {        
         $user = User::where('id',Auth::id())->first();
         $data = UserData::where('id',$user->user_data_id)->first()->locale;
         $local_id = locale::where('id',$data)->first()->id;
@@ -96,7 +95,19 @@ class HospetalController extends Controller
            $hospetal->id_no = $request->id_no;
            $hospetal->descrption = $request->descrption;
            $hospetal->type = $request->type;//$request->type;
-           $hospetal->files_route = 'test';//$request->files;
+           if ($request->file('files')) {
+            $file = $request->file('files');
+            $name = time().'.'.$file->getClientOriginalExtension();
+            if($request->type == 1){
+                $file->move(public_path().'/upload/Hospetal/barth', $name);
+                $path = 'barth';
+            }else{
+                $file->move(public_path().'/upload/Hospetal/dath', $name); 
+                $path = 'dath';
+            }
+            
+            }
+           $hospetal->files_route = "/upload/Hospetal/$path/". $name;//$request->files;
            $hospetal->save();
            session()->flash('success');
            return redirect()->back();
@@ -126,14 +137,24 @@ class HospetalController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Request $request)
-    {
-            //   return $request;
+    {  
               try{
+                if ($request->file('files')) {
+                    $file = $request->file('files');
+                    $name = time().'.'.$file->getClientOriginalExtension();
+                    if($request->type == 1){
+                        $file->move(public_path().'/upload/Hospetal/barth', $name);  
+                        $path = 'barth';
+                    }else{
+                        $file->move(public_path().'/upload/Hospetal/dath', $name); 
+                        $path = 'dath';
+                    }
+                    }
                   $center = Hospetal::where('id',$request->id)->update([
                     'id_no' => $request->id_no,
                     'descrption' => $request->descrption,
                     'type' => $request->type,
-                    'files_route' => 'test'
+                    'files_route' => "/upload/Hospetal/$path/". $name
                   ]);
                   session()->flash('update');
                   return redirect()->back();

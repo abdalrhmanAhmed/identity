@@ -11,25 +11,25 @@ class CreateClientsTable extends Migration {
 	{
 		Schema::create('clients', function(Blueprint $table) {
 			$table->increments('id');
-			$table->string('full_name_en', 255);
-			$table->string('full_name_ar', 255);
-			$table->integer('father_national_no');
-			$table->date('b_date');
-			$table->boolean('gender')->default(0);
-			$table->bigInteger('b_certify_no');
-			$table->string('public_addres', 255);
-			$table->integer('id_workplace')->unsigned();
-			$table->integer('id_social_situation');
-			$table->integer('id_blood_type');
-			$table->integer('id_birth_place');
-			$table->integer('id_profession');
-			$table->integer('id_country_births');
-			$table->integer('id_education');
-			$table->integer('id_pro_classification');
-			$table->integer('id_religion');
-			$table->integer('phone_no');
-			$table->tinyInteger('id_dna')->unsigned();
-			$table->tinyInteger('id_bank_acount')->unsigned();
+			$table->string('full_name_en', 255)->nullable();
+			$table->string('full_name_ar', 255)->nullable();
+			$table->integer('father_national_no')->nullable();
+			$table->date('b_date')->nullable();
+			$table->boolean('gender')->default(0)->nullable();
+			$table->bigInteger('b_certify_no')->nullable();
+			$table->string('public_addres', 255)->nullable();
+			$table->integer('id_workplace')->unsigned()->nullable();
+			$table->integer('id_social_situation')->nullable();
+			$table->integer('id_blood_type')->nullable();
+			$table->integer('id_birth_place')->nullable();
+			$table->integer('id_profession')->nullable();
+			$table->integer('id_country_births')->nullable();
+			$table->integer('id_education')->nullable();
+			$table->integer('id_pro_classification')->nullable();
+			$table->integer('id_religion')->nullable();
+			$table->integer('phone_no')->nullable();
+			$table->tinyInteger('id_dna')->unsigned()->nullable();
+			$table->tinyInteger('id_bank_acount')->unsigned()->nullable();
 			$table->timestamps();
 		});
 	}

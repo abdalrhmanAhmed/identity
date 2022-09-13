@@ -178,6 +178,7 @@ return [
 
         Spatie\Permission\PermissionServiceProvider::class,
         // LaravelQRCode\Providers\QRCodeServiceProvider::class,     
+        Intervention\Image\ImageServiceProvider::class,
 
     ],
 
@@ -232,7 +233,8 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        // 'QRCode' => LaravelQRCode\Facades\QRCode::class,     
+        // 'QRCode' => LaravelQRCode\Facades\QRCode::class,   
+        'Image' => Intervention\Image\Facades\Image::class
 
 
     ],

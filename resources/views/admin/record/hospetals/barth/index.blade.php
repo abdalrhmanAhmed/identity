@@ -83,7 +83,7 @@
 													<td class="text-center">{{ $users->userData->local[0]->local_name}}</td>
 													<td class="text-center">احمد الطيب</td>
 													<td class="text-center">{{ Auth::user()->name }}</td>
-													<td class="text-center"><i class="fe fe-file tx-20 text-warning" style="cursor: pointer"></i></td>
+													<td class="text-center"><a class="text-warning" style="cursor: pointer"data-toggle="modal" href="#file{{$center->id}}"><i class="fe fe-file tx-20"></i></a></td>
 													<td class="text-center">
 														<div class="dropdown">
 															<button aria-expanded="false" aria-haspopup="true"
@@ -101,14 +101,27 @@
 														</div>
 													</td>
 												</tr>
-                                                                     												<!-- edit modal -->
+												<!-- file modal -->
+												<div class="modal" id="file{{$center->id}}">
+													<div class="modal-dialog modal-dialog-centered" role="document">
+														<div class="modal-content modal-content-demo">
+															<div class="modal-header">
+																<h6 class="modal-title"> مستند الشهادة</h6><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+															</div>
+															<div class="model-body">
+																<img src="{{ URL::asset($center->files_route) }}" alt="dfwef" width="500">
+															</div>
+														</div>
+													</div>
+												</div>
+                                                <!-- edit modal -->
 												<div class="modal" id="edit{{$center->id}}">
 													<div class="modal-dialog modal-dialog-centered" role="document">
 														<div class="modal-content modal-content-demo">
 															<div class="modal-header">
-																<h6 class="modal-title"> شهادة الشهادة</h6><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+																<h6 class="modal-title"> تعديل الشهادة</h6><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
 															</div>
-															<form action="{{ route('barthedit') }}" method="post">
+															<form action="{{ route('barthedit') }}" method="post" enctype="multipart/form-data">
 																{{ csrf_field() }}
 																@method('post')
 																<div class="modal-body">
@@ -130,7 +143,7 @@
 																	<br>
 																	<div class="col-sm-12 col-md-4 mg-t-10 mg-sm-t-0">
 																		<label for="">ملف الحالة</label>
-																		<input class="dropify" type="file" name="files" accept=".pdf,.png,.jpg,.jpeg"/>
+																		<input  type="file" name="files" multiple/>
 																	</div>
 																</div>
 																<div class="modal-footer">
@@ -172,14 +185,14 @@
 						</div>
 					</div>
 
-                    						<!-- add modal -->
+                    	<!-- add modal -->
 						<div class="modal" id="modaldemo8">
 							<div class="modal-dialog modal-dialog-centered" role="document">
 								<div class="modal-content modal-content-demo">
 									<div class="modal-header">
 										<h6 class="modal-title">إضافة  شهادة جديدة</h6><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
 									</div>
-									<form action="{{ route('barthcreate') }}" method="POST">
+									<form action="{{ route('barthcreate') }}" method="POST" enctype="multipart/form-data">
 										{{ csrf_field() }}
 										<div class="modal-body">
 											<label for="">وصف الحالة</label>
