@@ -25,6 +25,7 @@ use App\Http\Controllers\record\TicketController;
 use App\Http\Controllers\record\ClientsController;
 use App\Http\Controllers\record\FailedJobsController;
 use App\Http\Controllers\record\HospetalController;
+use App\Http\Controllers\record\BarthDatheController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -92,6 +93,7 @@ Route::get('/', function () {
                 Route::resource('/profile',ProfileController::class );
                 Route::resource('/center',CenterController::class );
                 Route::resource('/tiket',TicketController::class );
+                Route::resource('barthDathe',BarthDatheController::class);
                 Route::get('getLocal/{id}',[ProfileController::class,'getLocal'])->name('getLocal');
                 Route::get('getCenter/{id}',[ProfileController::class,'getCenter'])->name('getCenter');
                 Route::get('profile/data/{id}',[ClientsController::class,'index'])->name('profileData');

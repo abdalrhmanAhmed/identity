@@ -750,10 +750,20 @@ class ComposerStaticInit4c969d5c5cefdbe66062bb7b6e528107
         'App\\Http\\Middleware\\TrustHosts' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustHosts.php',
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+        'App\\Models\\BarthDathe' => __DIR__ . '/../..' . '/app/Models/BarthDathe.php',
+=======
+>>>>>>> Stashed changes
         'App\\Models\\DisabilityInformation' => __DIR__ . '/../..' . '/app/Models/DisabilityInformation.php',
         'App\\Models\\IdInformation' => __DIR__ . '/../..' . '/app/Models/IdInformation.php',
         'App\\Models\\MarryInformation' => __DIR__ . '/../..' . '/app/Models/MarryInformation.php',
         'App\\Models\\PersonalInformation' => __DIR__ . '/../..' . '/app/Models/PersonalInformation.php',
+<<<<<<< Updated upstream
+=======
+>>>>>>> dcb58ef7f0d2df61373172426b0ae60f5bff4376
+>>>>>>> Stashed changes
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Models\\WitnessInformation' => __DIR__ . '/../..' . '/app/Models/WitnessInformation.php',
         'App\\Models\\payment' => __DIR__ . '/../..' . '/app/Models/payment.php',

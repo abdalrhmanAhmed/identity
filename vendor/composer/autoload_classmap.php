@@ -56,11 +56,21 @@ return array(
     'App\\Http\\Middleware\\TrustHosts' => $baseDir . '/app/Http/Middleware/TrustHosts.php',
     'App\\Http\\Middleware\\TrustProxies' => $baseDir . '/app/Http/Middleware/TrustProxies.php',
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
+<<<<<<< Updated upstream
     'App\\Models\\BarthDathe' => $baseDir . '/app/Models/BarthDathe.php',
+=======
+<<<<<<< HEAD
+    'App\\Models\\BarthDathe' => $baseDir . '/app/Models/BarthDathe.php',
+=======
+>>>>>>> Stashed changes
     'App\\Models\\DisabilityInformation' => $baseDir . '/app/Models/DisabilityInformation.php',
     'App\\Models\\IdInformation' => $baseDir . '/app/Models/IdInformation.php',
     'App\\Models\\MarryInformation' => $baseDir . '/app/Models/MarryInformation.php',
     'App\\Models\\PersonalInformation' => $baseDir . '/app/Models/PersonalInformation.php',
+<<<<<<< Updated upstream
+=======
+>>>>>>> dcb58ef7f0d2df61373172426b0ae60f5bff4376
+>>>>>>> Stashed changes
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',
     'App\\Models\\WitnessInformation' => $baseDir . '/app/Models/WitnessInformation.php',
     'App\\Models\\payment' => $baseDir . '/app/Models/payment.php',
