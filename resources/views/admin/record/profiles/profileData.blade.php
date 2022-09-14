@@ -142,4 +142,29 @@
 <!-- Internal TelephoneInput js-->
 <script src="{{URL::asset('assets/plugins/telephoneinput/telephoneinput.js')}}"></script>
 <script src="{{URL::asset('assets/plugins/telephoneinput/inttelephoneinput.js')}}"></script>
+
+<script>
+	$(document).ready(function() {
+		$('select[name="witness_number_one"]').on('keyup', function() {
+			console.log('hi');
+			var witness_one_id = $(this).val();
+			if (witness_one_id) {
+				$.ajax({
+					url: "{{ URL::to('get_witness') }}/" + witness_one_id,
+					type: "GET",
+					dataType: "json",
+					success: function(data) {
+						$('select[name="witness_name_one"]').empty();
+						$.each(data, function(key, value) {
+							$('select[name="witness_name_one"]').append(value);
+						});
+					},
+				});
+			} else {
+				console.log('AJAX load did not work');
+			}
+		});
+	});
+
+</script>
 @endsection

@@ -127,4 +127,11 @@ class ClientsController extends Controller
     {
         return $request;
     }//end of witness_information
+
+    public function get_witness($id)
+    {
+        $witness = IdInformation::where('nationality_number', $id)->pluck('id', 'trak_id');
+        $name = $witness->personal_information->full_name_ar;
+        return $name;
+    }
 }

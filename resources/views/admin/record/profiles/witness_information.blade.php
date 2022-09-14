@@ -4,21 +4,21 @@
         <div class="row">
             <div class="form-group col">
                 <label class="form-label">رقم الشاهد الأول الوطني</label>
-                <input type="number" name="" class="form-control" id="">
+                <input type="number" name="witness_number_one" class="form-control" id="">
             </div>
             <div class="control-group form-group col">
                 <label class="form-label">إسم الشاهد الأول</label>
-                <input type="text" name="" id="" class="form-control" readonly>
+                <input type="text" name="witness_name_one" id="" class="form-control" readonly>
             </div>
         </div>
         <div class="row">
             <div class="form-group col">
                 <label class="form-label">رقم الشاهد الثاني الوطني</label>
-                <input type="number" name="" class="form-control" id="">
+                <input type="number" name="witness_number_tow" class="form-control" id="">
             </div>
             <div class="control-group form-group col">
                 <label class="form-label">إسم الشاهد الثاني</label>
-                <input type="text" name="" id="" class="form-control" readonly>
+                <input type="text" name="witness_name_tow" id="" class="form-control" readonly>
             </div>
         </div>
         <!-- row -->

@@ -28,7 +28,7 @@ use App\Http\Controllers\record\HospetalController;
 use App\Http\Controllers\record\BarthDatheController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-
+use Laravel\Passport\Http\Controllers\ClientController;
 
 /*
 |--------------------------------------------------------------------------
@@ -85,6 +85,7 @@ Route::get('/', function () {
                 Route::resource('/Profession',ProfessionsController::class);
                 Route::resource('/Religions',ReligionsController::class);
                 Route::resource('/Client',ClientsController::class);
+                Route::get('/get_witness/{id}', [ClientController::class, 'get_witness'])->name('get_witness');
                 Route::resource('/Social_situation',Social_situationController::class);
                 Route::resource('/States',StatesController::class);
                 Route::resource('/AdministrativeUnits',AdministrativeUnitsController::class);
