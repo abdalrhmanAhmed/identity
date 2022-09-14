@@ -56,6 +56,7 @@ return array(
     'App\\Http\\Middleware\\TrustHosts' => $baseDir . '/app/Http/Middleware/TrustHosts.php',
     'App\\Http\\Middleware\\TrustProxies' => $baseDir . '/app/Http/Middleware/TrustProxies.php',
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
+    'App\\Models\\BarthDathe' => $baseDir . '/app/Models/BarthDathe.php',
     'App\\Models\\DisabilityInformation' => $baseDir . '/app/Models/DisabilityInformation.php',
     'App\\Models\\IdInformation' => $baseDir . '/app/Models/IdInformation.php',
     'App\\Models\\MarryInformation' => $baseDir . '/app/Models/MarryInformation.php',

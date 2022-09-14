@@ -73,8 +73,6 @@
                                                             {!! Form::close() !!}
                                                         @endcan
 
-
-
 													</td>
 												</tr>
 												<!-- edit modal -->

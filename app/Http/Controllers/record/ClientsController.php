@@ -42,7 +42,7 @@ class ClientsController extends Controller
             }elseif($request->id_information){
                 return $this->id_information($request, $profile);
             }elseif($request->disability_information){
-                return 'disability_information';
+                return $this->disability_information($request, $profile);
             }elseif($request->witness_information){
                 return "witness_information";
             }else{
@@ -78,7 +78,7 @@ class ClientsController extends Controller
         $personal_information->save();
         session()->flash('success');
         return redirect()->back();
-    }
+    }//end of personal_information
 
     public function id_information($request, $profile)
     {
@@ -104,5 +104,10 @@ class ClientsController extends Controller
         $id_information->save();
         session()->flash('success');
         return redirect()->back();
-    }
+    }//end of id_information
+
+    public function disability_information($request, $profile)
+    {
+
+    }//end of disability_information
 }

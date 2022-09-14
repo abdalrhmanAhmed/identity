@@ -135,7 +135,7 @@
 						</div>
 					</div>
 
-                    						<!-- add modal -->
+						<!-- add modal -->
 						<div class="modal" id="modaldemo8">
 							<div class="modal-dialog modal-dialog-centered" role="document">
 								<div class="modal-content modal-content-demo">
