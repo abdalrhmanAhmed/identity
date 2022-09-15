@@ -17,9 +17,8 @@ class BarthDatheController extends Controller
      */
     public function index()
     {
-        $Profiles = Profile::orderBy('id', 'desc')->get();
         $tickets = Ticket::orderBy('id', 'desc')->get();
-        return view('admin.record.barth-dathe.index',compact('Profiles','tickets'));
+        return view('admin.record.barth-dathe.index',compact('tickets'));
     }
 
     /**

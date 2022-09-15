@@ -37,7 +37,7 @@
 						<div class="card">
 							<div class="card-header pb-0">
 								<div class="d-flex justify-content-between">
-									<h4 class="card-title mg-b-0">قائمة الملفات</h4>
+									<h4 class="card-title mg-b-0">قائمة سجل المواليد</h4>
 									@can('role-create')
 									<a class="btn btn-success btn-sm effect-scale" data-target="#modaldemo6" data-toggle="modal" href="" data-effect="effect-scale">التذاكر</a>
 								@endcan
@@ -61,75 +61,45 @@
 											</tr>
 										</thead>
 										<tbody>
-											@foreach ($Profiles as $profile)
-												<tr>
-													<td>{{ $loop->index+1 }}</td>
-													<td>{{ $profile->pro_id }}</td>
-													<td>{{ $profile->ticket->client_name}}</td>
-													<td>{{ $profile->mother_name}}</td>
-													<td>{{$profile->user->userData->states[0]->state_name}}</td>
-													<td>{{$profile->user->userData->local[0]->local_name}}</td>
-													<td>{{$profile->user->userData->centers[0]->center_name}}</td>
-													<td class="text-center">
+											<td>1</td>
+											<td>2001522</td>
+											<td>محمد ياسين</td>
+											<td>امنة ياسر</td>
+											<td>الخرطوم</td>
+											<td>محلية الخرطوم</td>
+											<td>المركز الرئيسي</td>
+											<td>15-9-2002</td>
+											<td>
+												<div class="text-ticket">
+													<label for="" class="badge badge-warning">تحت الإنشاء</label>
+												</div>
+											</td>
+											<td>
+												<div class="dropdown">
+													<button aria-expanded="false" aria-haspopup="true"
+														class="btn ripple btn-primary btn-sm" data-toggle="dropdown"
+														type="button">العمليات<i class="fas fa-caret-down ml-1"></i></button>
+													<div class="dropdown-menu tx-13">    
+														
+														<a class="dropdown-item" href="">
+															<i class=" text-info fas fa-file"></i>&nbsp;&nbsp;
+															أنشاء بيانات الملف
+														</a>
+														
+														<a class="dropdown-item" href="">
+															<i class=" text-warning fas fa-edit"></i>&nbsp;&nbsp;
+															تعديل بيانات الملف
+														</a>
+														
+														<a class="dropdown-item" href="">
+															<i class=" text-warning fas fa-edit"></i>&nbsp;&nbsp;
+															تحديث
+														</a>
+														
+													</div>
 													
-														@if (isset($profile->created_at	))
-															@php
-																$date = strtotime( $profile->created_at	)
-															@endphp
-															{{date('d/m/Y', $date)}}
-														@else
-															-
-														@endif
-													</td>
-													<td>
-														@if ($profile->status == 0)
-														<div class="text-ticket">
-															<label for="" class="badge badge-warning">تحت الإنشاء</label>
-														</div>
-														@endif
-														@if ($profile->status == 1)
-														<div class="text-ticket">
-															<label for="" class="badge badge-success">مكتمل</label>
-														</div>
-														@endif
-														@if ($profile->status == 2)
-														<div class="text-ticket">
-															<label for="" class="badge badge-danger">محظور</label>
-														</div>
-														@endif
-														
-														
-													</td>
-													<td>
-														<div class="dropdown">
-															<button aria-expanded="false" aria-haspopup="true"
-																class="btn ripple btn-primary btn-sm" data-toggle="dropdown"
-																type="button">العمليات<i class="fas fa-caret-down ml-1"></i></button>
-															<div class="dropdown-menu tx-13">    
-																@if($profile->pro_data_id == null)
-																<a class="dropdown-item" href="{{route('profileData',$profile->pro_id)}}">
-																	<i class=" text-info fas fa-file"></i>&nbsp;&nbsp;
-																	أنشاء بيانات الملف
-																</a>
-																@endif
-																@if($profile->pro_data_id !== null)
-																<a class="dropdown-item" href="">
-																	<i class=" text-warning fas fa-edit"></i>&nbsp;&nbsp;
-																	تعديل بيانات الملف
-																</a>
-																@endif
-																@if($profile->pro_data_id !== null)
-																<a class="dropdown-item" href="">
-																	<i class=" text-warning fas fa-edit"></i>&nbsp;&nbsp;
-																	تحديث
-																</a>
-																@endif
-															</div>
-														  
-														</div>
-													</td>
-												</tr>
-											@endforeach
+												</div>
+											</td>
 										</tbody>
 									</table>
 								</div>
