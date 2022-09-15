@@ -26,6 +26,7 @@ use App\Http\Controllers\record\ClientsController;
 use App\Http\Controllers\record\FailedJobsController;
 use App\Http\Controllers\record\HospetalController;
 use App\Http\Controllers\record\BarthDatheController;
+use App\Http\Controllers\admin\report\reportController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Passport\Http\Controllers\ClientController;
@@ -102,6 +103,15 @@ Route::get('/', function () {
                 Route::post('barthcreate',[HospetalController::class,'store'])->name('barthcreate');
                 Route::post('barthedit',[HospetalController::class,'edit'])->name('barthedit');
                 Route::post('barthdelete',[HospetalController::class,'destroy'])->name('barthdelete');
+                /**
+                 * ==========================================================================
+                 * =========================reports routes===================================
+                 * ==========================================================================
+                 */
+                Route::controller(reportController::class)->group(function(){
+                    Route::get('reports/contrys', 'contry')->name('reports.contrys');
+                    Route::get('reports/agents', 'agents')->name('reports.agents');
+                });
                 
 
                 Route::get('/qrcode',[App\Http\Controllers\qrcode\QrcodeController::class , 'index'])->name('qrcode');
