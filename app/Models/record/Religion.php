@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\record;
 
 use Illuminate\Database\Eloquent\Model;
 
 class Religion extends Model 
 {
 
-    protected $table = 'religion';
+    protected $table = 'religions';
     public $timestamps = true;
     protected $fillable = array('religion_name');
 

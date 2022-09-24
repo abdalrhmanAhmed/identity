@@ -7,6 +7,7 @@ use App\Models\Client as ModelsClient;
 use App\Models\DisabilityInformation;
 use App\Models\IdInformation;
 use App\Models\PersonalInformation;
+use App\Models\record\AdministrativeUnits;
 use Illuminate\Http\Request;
 use App\Models\record\Profile;
 use App\Models\record\Client;
@@ -16,7 +17,11 @@ use App\Models\record\Social_situation;
 use App\Models\record\Professions;
 use App\Models\record\Education;
 use App\Models\record\falids_jobs;
+use App\Models\record\locale;
+use App\Models\record\Popularadministrations;
+use App\Models\record\States;
 use App\Models\record\UserData;
+use App\Models\record\Religion;
 use App\Models\User;
 use Illuminate\Queue\Jobs\RedisJob;
 use Illuminate\Support\Facades\Auth;
@@ -54,12 +59,22 @@ class ClientsController extends Controller
         $socialSituations = Social_situation::all();
         $professionss = Professions::all();
         $educations = Education::all();
+        $popular_administrations = Popularadministrations::all();
+        $locals = locale::all();
+        $states = States::all();
+        $religions = Religion::all();
+        $adminstratives = AdministrativeUnits::all();
         $failedjobs = falids_jobs::all();
         $clients = Client::where('track_number', $profile->track_id)->first();
         $profileData = PersonalInformation::where('trak_id', $profile->track_id)->first();
         $id_information = IdInformation::where('trak_id', $profile->track_id)->first();
         $disability_information = DisabilityInformation::where('trak_id', $profile->track_id)->first();
         return view('admin.record.profiles.profileData',compact(
+            'religions',
+            'popular_administrations',
+            'adminstratives',
+            'states',
+            'locals',
             'failedjobs',
             'profile',
             'parthPalces',
@@ -288,5 +303,43 @@ class ClientsController extends Controller
         $clients = Client::where('id_number',$id)->first();
         $personal_information = PersonalInformation::where('id', $clients->personal_information)->pluck('full_name_ar');
         return $personal_information;
+    }
+
+    public function dataEdit($id)
+    {
+        $profile = Profile::where('pro_id',$id)->first();
+        $parthPalces = CountryBirths::all();
+        $bloodTypes = BloodType::all();
+        $locals = locale::all();
+        $socialSituations = Social_situation::all();
+        $professionss = Professions::all();
+        $educations = Education::all();
+        $failedjobs = falids_jobs::all();
+        $popular_administrations = Popularadministrations::all();
+        $states = States::all();
+        $religions = Religion::all();
+        $adminstratives = AdministrativeUnits::all();
+        $clients = Client::where('track_number', $profile->track_id)->first();
+        $profileData = PersonalInformation::where('trak_id', $profile->track_id)->first();
+        $id_information = IdInformation::where('trak_id', $profile->track_id)->first();
+        $disability_information = DisabilityInformation::where('trak_id', $profile->track_id)->first();
+        return view('admin.record.profiles.edit_profile.profileDataEdit',compact(
+            'religions',
+            'popular_administrations',
+            'adminstratives',
+            'states',
+            'locals',
+            'failedjobs',
+            'profile',
+            'parthPalces',
+            'bloodTypes',
+            'socialSituations',
+            'professionss',
+            'educations',
+            'clients',
+            'profileData',
+            'id_information',
+            'disability_information'
+        ));
     }
 }

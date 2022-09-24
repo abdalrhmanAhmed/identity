@@ -112,12 +112,12 @@
 																	أنشاء بيانات الملف
 																</a>
 																@endif
-																@if($profile->pro_data_id !== null)
-																<a class="dropdown-item" href="">
+																{{-- @if($profile->pro_data_id !== null) --}}
+																<a class="dropdown-item" href="{{route('profileDataEdit',$profile->pro_id)}}">
 																	<i class=" text-warning fas fa-edit"></i>&nbsp;&nbsp;
 																	تعديل بيانات الملف
 																</a>
-																@endif
+																{{-- @endif --}}
 																@if($profile->pro_data_id !== null)
 																<a class="dropdown-item" href="">
 																	<i class=" text-warning fas fa-edit"></i>&nbsp;&nbsp;
