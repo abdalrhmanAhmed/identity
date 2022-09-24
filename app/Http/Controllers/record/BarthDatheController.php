@@ -17,8 +17,7 @@ class BarthDatheController extends Controller
      */
     public function index()
     {
-        $tickets = Ticket::orderBy('id', 'desc')->get();
-        return view('admin.record.barth-dathe.index',compact('tickets'));
+        return view('admin.record.barth-dathe.barth.index');
     }
 
     /**
@@ -28,7 +27,7 @@ class BarthDatheController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.record.barth-dathe.barth.create');
     }
 
     /**
@@ -39,7 +38,37 @@ class BarthDatheController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return view('admin.record.barth-dathe.barth.invoice');
+    }
+
+
+
+
+
+    public function indexd()
+    {
+        return view('admin.record.barth-dathe.dath.index');
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function created()
+    {
+        return view('admin.record.barth-dathe.dath.create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function stored(Request $request)
+    {
+        return view('admin.record.barth-dathe.dath.invoice');
     }
 
     /**

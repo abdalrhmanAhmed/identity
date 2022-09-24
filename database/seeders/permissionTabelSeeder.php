@@ -32,7 +32,8 @@ class permissionTabelSeeder extends Seeder
             'tecket_maker',
             'parsones_recorde',
             'reports',
-            'settinges'
+            'settinges',
+            'client',
             ];
             foreach ($permissions as $permission) {
             Permission::create(['name' => $permission]);
