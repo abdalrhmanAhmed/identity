@@ -100,6 +100,7 @@ Route::get('/', function () {
                 Route::get('getCenter/{id}',[ProfileController::class,'getCenter'])->name('getCenter');
                 Route::post('dna',[ProfileController::class,'uploadDna'])->name('dna');
                 Route::get('profile/data/{id}',[ClientsController::class,'index'])->name('profileData');
+                Route::get('profile/dataEdit/{id}',[ClientsController::class,'dataEdit'])->name('profileDataEdit');
                 Route::get('profile/getFatherName/{id}',[ClientsController::class,'getFatherName'])->name('getFatherName');
                 Route::get('barthdoc',[HospetalController::class,'indexb'])->name('barthdoc');
                 Route::post('barthcreate',[HospetalController::class,'store'])->name('barthcreate');

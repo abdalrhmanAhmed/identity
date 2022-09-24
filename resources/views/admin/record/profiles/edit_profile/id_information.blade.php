@@ -1,11 +1,5 @@
-@php
-    if($profile && !$id_information){
-        $active = 'active';
-    }else{
-        $active = '';
-    }
-@endphp
-<div class="tab-pane {{ $active }}" id="profile">
+
+<div class="tab-pane" id="profile">
     <h3>بيانات الميلاد و الجنسية و العمل</h3>
     <br>
 <section>
@@ -21,7 +15,7 @@
                     <select class="form-control required" searchable="Search here.." name="state">
                         <option value="" disabled selected>غير مصنف</option>
                         @foreach ($states as $state)
-                            <option value="{{ $state->id }}">{{$state->state_name}}</option>
+                            <option value="{{ $state->id }}" {{$state->id == $id_information->britrh_state ? 'selected' : ''}}>{{$state->state_name}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -31,7 +25,7 @@
                     <select class="form-control required" searchable="Search here.." name="admin_unit">
                         <option value="" disabled selected>لايوجد</option>
                         @foreach ($adminstratives as $adminstrative)
-                            <option value="{{ $adminstrative->id }}">{{ $adminstrative->adminis_name }}</option>
+                            <option value="{{ $adminstrative->id }}" {{$adminstrative->id == $id_information->britrh_adminstrative_unit ? 'selected' : ''}}>{{ $adminstrative->adminis_name }}</option>
                         @endforeach
                     </select>
                 </div>
