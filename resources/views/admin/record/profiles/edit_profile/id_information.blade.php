@@ -1,3 +1,5 @@
+@if ($id_information)
+    
 
 <div class="tab-pane" id="profile">
     <h3>بيانات الميلاد و الجنسية و العمل</h3>
@@ -190,3 +192,5 @@
 </script>
 
 @endsection
+
+@endif
