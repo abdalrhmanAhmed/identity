@@ -18,8 +18,7 @@ class CreateClientsTable extends Migration
             $table->string('track_number');
             $table->string('id_number');
             $table->integer('mather_dna')->nullable();
-            $table->integer('father_dna')->nullable();
-            $table->integer('finger_print')->nullable();
+            $table->integer('client_dna_id')->nullable();
             $table->string('bank_number')->nullable();
             $table->string('trafic_number')->nullable();
             $table->string('dapt_number')->nullable();
