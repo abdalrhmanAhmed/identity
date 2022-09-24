@@ -98,7 +98,9 @@ Route::get('/', function () {
                 Route::resource('barthDathe',BarthDatheController::class);
                 Route::get('getLocal/{id}',[ProfileController::class,'getLocal'])->name('getLocal');
                 Route::get('getCenter/{id}',[ProfileController::class,'getCenter'])->name('getCenter');
+                Route::post('dna',[ProfileController::class,'uploadDna'])->name('dna');
                 Route::get('profile/data/{id}',[ClientsController::class,'index'])->name('profileData');
+                Route::get('profile/getFatherName/{id}',[ClientsController::class,'getFatherName'])->name('getFatherName');
                 Route::get('barthdoc',[HospetalController::class,'indexb'])->name('barthdoc');
                 Route::post('barthcreate',[HospetalController::class,'store'])->name('barthcreate');
                 Route::post('barthedit',[HospetalController::class,'edit'])->name('barthedit');

@@ -1,4 +1,11 @@
-<div class="tab-pane" id="settings">
+@php
+    if($profile && $id_information && !$disability_information){
+        $active = 'active';
+    }else{
+        $active = '';
+    }
+@endphp
+<div class="tab-pane {{ $active }}" id="settings">
 										
     <!-- row -->
     <div class="row">

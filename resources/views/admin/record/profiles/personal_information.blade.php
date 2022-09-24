@@ -1,4 +1,4 @@
-<div class="tab-pane active" id="home">
+<div class="tab-pane {{ !$profileData ? 'active' : '' }}" id="home">
     <h3>البيانات الشخصية</h3>
     <br>
     <section>

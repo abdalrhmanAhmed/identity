@@ -24,5 +24,10 @@ class DatabaseSeeder extends Seeder
         $this->call(popularAdministrationsSeeder::class);
         $this->call(UserDataSeeder::class);
         $this->call(socialSituationSeeder::class);
+        $this->call(centerSeeder::class);
+        $this->call(qualificationSeeder::class);
+        $this->call(occupationalClassificationSeeder::class);
+        $this->call(professionsSeeder::class);
+        $this->call(banksSeeder::class);
     }
 }

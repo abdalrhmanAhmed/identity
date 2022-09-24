@@ -23,7 +23,8 @@
 				<!-- breadcrumb -->
 @endsection
 @section('content')
-				@include('notifications.notify')
+		@include('notifications.notify')
+		@include('errors.exceptions')
 				<!-- row -->
 				<div class="row row-sm">
 					<div class="col-lg-4">
@@ -43,15 +44,15 @@
 										<div class="row">
 											<div class="col-md-4 col mb20">
 												<h5>الرقم البنكي</h5>
-												<h6 class="text-small text-muted mb-0">0000</h6>
+												<h6 class="text-small text-muted mb-0">{{ $clients->bank_number ?? '000' }}</h6>
 											</div>
 											<div class="col-md-4 col mb20">
 												<h5>رقم المرور</h5>
-												<h6 class="text-small text-muted mb-0">0000</h6>
+												<h6 class="text-small text-muted mb-0">{{ $clients->trafic_number ?? '000' }}</h6>
 											</div>
 											<div class="col-md-4 col mb20">
 												<h5>الرقم الضريبي</h5>
-												<h6 class="text-small text-muted mb-0">0000</h6>
+												<h6 class="text-small text-muted mb-0">{{ $clients->dapt_number ?? '000' }}</h6>
 											</div>
 										</div>
 										<hr class="mg-y-30">
@@ -62,7 +63,18 @@
 													<i class="fa fa-home"></i>
 												</div>
 												<div class="media-body">
-													<span>بيانات الحمض النووي</span> 
+													<p>بيانات الحمض النووي</p> 
+													@if($clients != null)
+													<form action="{{route('dna')}}" method="POST" enctype="multipart/form-data">
+														@csrf
+															<div class="form-group col-md-7">
+																<input type="file" name="select_file" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+															</div>
+															<div class="col-md-1 col-sm-3 colxs-12">
+																<input type="submit" value="إرسال" class="btn btn-success">
+															</div>
+													</form>
+													@endif
 												</div>
 											</div>
 											<div class="media">
@@ -70,7 +82,15 @@
 													<i class="fa fa-home"></i>
 												</div>
 												<div class="media-body">
-													<span>بصمات الأصابع</span> 
+													<p>بصمات الأصابع</p> 
+													@if($clients != null)
+													<form action="post" method="" enctype="multipart/form-data">
+														@csrf														
+														<input type="file" name="finger_print" class="form-control" id="">
+														<br>
+														<input type="submit"  class="btn btn-warning" value="رفع">
+													</form>
+													@endif
 												</div>
 											</div>
 										</div>
@@ -86,15 +106,21 @@
 								<div class="tabs-menu ">
 									<!-- Tabs -->
 									<ul class="nav nav-tabs profile navtab-custom panel-tabs">
-										<li class="active">
-											<a href="#home" data-toggle="tab" aria-expanded="true"> <span class="visible-xs"><i class="las la-user-circle tx-16 mr-1"></i></span> <span class="hidden-xs">البيانات الشخصية</span> </a>
-										</li>
-										<li class="">
-											<a href="#profile" data-toggle="tab" aria-expanded="false"> <span class="visible-xs"><i class="las la-images tx-15 mr-1"></i></span> <span class="hidden-xs">بيانات الهوية</span> </a>
-										</li>
-										<li class="">
-											<a href="#settings" data-toggle="tab" aria-expanded="false"> <span class="visible-xs"><i class="las la-cog tx-16 mr-1"></i></span> <span class="hidden-xs">بيانات الإعاقة</span> </a>
-										</li>
+										@if(!$profileData)
+											<li class="active">
+												<a href="#home" data-toggle="tab" aria-expanded="true"> <span class="visible-xs"><i class="las la-user-circle tx-16 mr-1"></i></span> <span class="hidden-xs">البيانات الشخصية</span> </a>
+											</li>
+										@endif
+										@if($profile && !$id_information)
+											<li class="">
+												<a href="#profile" data-toggle="tab" aria-expanded="false"> <span class="visible-xs"><i class="las la-images tx-15 mr-1"></i></span> <span class="hidden-xs">بيانات الهوية</span> </a>
+											</li>
+										@endif
+										@if($profile && $id_information && !$disability_information)
+											<li class="">
+												<a href="#settings" data-toggle="tab" aria-expanded="false"> <span class="visible-xs"><i class="las la-cog tx-16 mr-1"></i></span> <span class="hidden-xs">بيانات الإعاقة</span> </a>
+											</li>
+										@endif
 										<li class="">
 											<a href="#wins" data-toggle="tab" aria-expanded="false"> <span class="visible-xs"><i class="las la-cog tx-16 mr-1"></i></span> <span class="hidden-xs">بيانات الشهود</span> </a>
 										</li>
@@ -104,7 +130,9 @@
 									</ul>
 								</div>
 								<div class="tab-content border-left border-bottom border-right border-top-0 p-4">
-									@include('admin.record.profiles.personal_information')
+									@if(!$profileData)
+										@include('admin.record.profiles.personal_information')
+									@endif
 									@include('admin.record.profiles.id_information')
 									@include('admin.record.profiles.disability_information')
 									@include('admin.record.profiles.witness_information')

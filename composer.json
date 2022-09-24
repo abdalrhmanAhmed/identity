@@ -6,35 +6,37 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
+        "ext-gd": "*",
+        "barryvdh/laravel-dompdf": "^1.0",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
-        "intervention/image": "^2.7",
-        "laravel/framework": "^8.75",
-        "laravel/passport": "^10.4",
+        "laravel/framework": "^8.0",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
-        "laravel/ui": "^3.4",
+        "laravel/ui": "^3.0",
         "laravelcollective/html": "^6.3",
-        "maatwebsite/excel": "3.*",
-        "simplesoftwareio/simple-qrcode": "^0.0.4@beta",
+        "maatwebsite/excel": "^3.1",
+        "owen-it/laravel-auditing": "^13.0",
+        "phpoffice/phpspreadsheet": "^1.22",
+        "realrashid/sweet-alert": "^5.0",
+        "simplesoftwareio/simple-qrcode": "2.*",
+        "spatie/browsershot": "^3.52",
         "spatie/laravel-permission": "^5.5",
-        "werneckbh/qr-code": "^2.1",
         "yoeunes/toastr": "^1.2"
     },
     "require-dev": {
-        "facade/ignition": "^2.5",
+        "facade/ignition": "^2.3.1",
         "fakerphp/faker": "^1.9.1",
         "laravel/sail": "^1.0.1",
         "mockery/mockery": "^1.4.4",
-        "nunomaduro/collision": "^5.10",
-        "phpunit/phpunit": "^9.5.10"
+        "nunomaduro/collision": "^5.0",
+        "phpunit/phpunit": "^9.0"
     },
     "autoload": {
         "psr-4": {
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
-            "Database\\Seeders\\": "database/seeders/",
-            "LaravelQRCode\\": "src/"
+            "Database\\Seeders\\": "database/seeders/"
         }
     },
     "autoload-dev": {
@@ -59,15 +61,7 @@
     },
     "extra": {
         "laravel": {
-            "providers": [
-                "LaravelQRCode\\Providers\\QRCodeServiceProvider"
-            ],
-            "aliases": {
-                "QRCode": "LaravelQRCode\\Facades\\QRCode"
-            },
-            "dont-discover": [
-                "laravel/dusk"
-            ]
+            "dont-discover": []
         }
     },
     "config": {

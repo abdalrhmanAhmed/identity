@@ -30,4 +30,39 @@
             <input type="submit" name="marry_information" class="btn btn-main-primary pd-x-20" value="حفظ">
         </div>
     </form>
+
 </div>
+
+@section('js')
+<script src="{{URL::asset('assets/plugins/jquery-ui/ui/widgets/datepicker.js')}}"></script>
+<script src="{{URL::asset('assets/plugins/jquery.maskedinput/jquery.maskedinput.js')}}"></script>
+<script src="{{URL::asset('assets/plugins/jquery-simple-datetimepicker/jquery.simple-dtpicker.js')}}"></script>
+<script>
+    $(document).ready(function() {
+        $('input[name="husband_id"]').on('keyup', function() {
+            alert("hi");
+            var husband_id = $(this).val();
+            if (husband_id) {
+                // $.ajax({
+                //     url: "{{ URL::to('husbandName') }}/" + husband_id,
+                //     type: "GET",
+                //     dataType: "json",
+                //     success: function(data) {
+                //         $('select[name="dept"]').empty();
+                //         $('select[name="dept"]').append('<option selected disabled>إختر من القائمة</option>')
+                //         $.each(data, function(key, value) {
+                //             $('select[name="dept"]').append('<option value="' +
+                //                 key + '">' + value + '</option>');
+                //                 console.log(data);
+                //         });
+                //     },
+                // }
+                alert("hi");
+                );
+            } else {
+                console.log('AJAX load did not work');
+            }
+        });
+    });
+  </script>
+@endsection

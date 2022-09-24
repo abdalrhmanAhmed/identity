@@ -70,7 +70,7 @@ class HospetalController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {        
+    {       
         $user = User::where('id',Auth::id())->first();
         $data = UserData::where('id',$user->user_data_id)->first()->locale;
         $local_id = locale::where('id',$data)->first()->id;
@@ -94,7 +94,7 @@ class HospetalController extends Controller
            $hospetal->local_id = $local_id;
            $hospetal->id_no = $request->id_no;
            $hospetal->descrption = $request->descrption;
-           $hospetal->type = $request->type;//$request->type;
+           $hospetal->type = $request->type;
            if ($request->file('files')) {
             $file = $request->file('files');
             $name = time().'.'.$file->getClientOriginalExtension();

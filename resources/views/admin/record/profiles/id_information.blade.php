@@ -1,4 +1,11 @@
-<div class="tab-pane" id="profile">
+@php
+    if($profile && !$id_information){
+        $active = 'active';
+    }else{
+        $active = '';
+    }
+@endphp
+<div class="tab-pane {{ $active }}" id="profile">
     <h3>بيانات الميلاد و الجنسية و العمل</h3>
     <br>
 <section>
@@ -142,35 +149,32 @@
                     <div class="control-group form-group">
                     <label class="form-label">اسم الأم قبل التجنس</label>
                     <input type="text" name="mother_name_brfore_naturalization" class="form-control required" placeholder="اسم الأم ">
-                </div>
-                
+                    </div>                
                 </div>
                 <div class="col">
                     <div class="control-group form-group">
                     <label class="form-label">رقم التجنس</label>
                     <input type="number" name="nationality_number" class="form-control required" placeholder="رقم التجنس ">
 
-                </div>
+                    </div>
                     <br>
                     <div class="control-group form-group">
                     <label class="form-label">رقم الجنسية القديم</label>
                     <input type="number" name="old_nationality_number" class="form-control required" placeholder="رقم الجنسية القديم">
-                </div>
-                <br>
-                <div class="control-group form-group">
+                    </div>
+                    <br>
+                    <div class="control-group form-group">
                     <label class="form-label">الاسم قبل التجنس</label>
                     <input type="text" name="name_before_naturalization" class="form-control required" placeholder="الأسم قبل التجنس">
-                </div>
-                <br>
-                <div class="control-group form-group">
+                    </div>
+                    <br>
+                    <div class="control-group form-group">
                     <label class="form-label">الاسم الأب قبل التجنس</label>
-                    <input type="text" name="father_name_before_naturalization" class="form-control required" placeholder="اسم الأب">
+                    <input  type="text" name="father_name_before_naturalization" class="form-control required" placeholder="اسم الأب">
+                    </div>
+                    <br>
                 </div>
-                <br>
-
             </div>
-            </div>
-
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-rhgit">
             <input type="submit" name="id_information" class="btn btn-main-primary pd-x-20" value="حفظ">
@@ -178,3 +182,19 @@
     </form>
 </section>
 </div>
+@section('js')
+<script src="{{URL::asset('assets/plugins/jquery-ui/ui/widgets/datepicker.js')}}"></script>
+<script src="{{URL::asset('assets/plugins/jquery.maskedinput/jquery.maskedinput.js')}}"></script>
+<script src="{{URL::asset('assets/plugins/jquery-simple-datetimepicker/jquery.simple-dtpicker.js')}}"></script>
+<script>
+    $(document).ready(function(){
+        // $("input[name='nationality_type']").val(totalPoints);
+        $("select[name='nationality_type']").on('change',function(){
+            if($("select[name='nationality_type']").val() == ('1')){
+                $("select[name='mother_lang']").hide();
+            } 
+        });
+    });
+</script>
+
+@endsection

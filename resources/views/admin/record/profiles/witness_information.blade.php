@@ -1,4 +1,11 @@
-<div class="tab-pane" id="wins">
+@php
+    if($profile && $id_information && $disability_information){
+        $active = 'active';
+    }else{
+        $active = '';
+    }
+@endphp
+<div class="tab-pane {{ $active }}" id="wins">
     <form action="" method="POST">
         {{ csrf_field() }}
         <div class="row">

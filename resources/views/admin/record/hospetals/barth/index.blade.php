@@ -202,7 +202,7 @@
 											<input type="text" name="id_no" class="form-control" required>
                                             <br>
 											<label for="">إسم مقدم الطلب</label>
-											<input type="text" name="client_name" class="form-control" disabled>
+											<input type="text" name="client_name" class="form-control client_name" readonly>
                                             <br>
 											<label class="form-label">نوع الشهادة</label>
 											<select name="type" id="select-beast" class="form-control" data-parsley-class-handler="#lnWrapper" required="">
@@ -285,4 +285,28 @@
 <!-- Internal TelephoneInput js-->
 <script src="{{URL::asset('assets/plugins/telephoneinput/telephoneinput.js')}}"></script>
 <script src="{{URL::asset('assets/plugins/telephoneinput/inttelephoneinput.js')}}"></script>
+
+
+
+<script>
+    $(document).ready(function() {
+        $('input[name="id_no"]').on('change', function() {
+            var fatherId = $(this).val();
+            if (fatherId) {
+                $.ajax({
+                    url: "{{ URL::to('record/profile/getFatherName') }}/" + fatherId,
+                    type: "GET",
+                    dataType: "json",
+                    success: function(data) {
+                        $('input[name="client_name"]').empty();
+                        $('input[name="client_name"]').val(data)
+                    },
+                });
+            } else {
+                alert('AJAX load did not work');
+            }
+        });
+    });
+  </script>
+
 @endsection
